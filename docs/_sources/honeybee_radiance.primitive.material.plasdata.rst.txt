@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.plasdata module
+=====================================================
+
+.. automodule:: honeybee_radiance.primitive.material.plasdata
+    :members:
+    :undoc-members:
+    :show-inheritance:

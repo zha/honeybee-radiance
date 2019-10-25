@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>honeybee_radiance.primitive.material.trans module &#8212; honeybee radiance  documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="honeybee_radiance.primitive.material.trans2 module" href="honeybee_radiance.primitive.material.trans2.html" />
+    <link rel="prev" title="honeybee_radiance.primitive.material.spotlight module" href="honeybee_radiance.primitive.material.spotlight.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          honeybee radiance</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="honeybee_radiance.html">honeybee_radiance package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="honeybee_radiance.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.cli.html">honeybee_radiance.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.cli.grid.html">honeybee_radiance.cli.grid module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.cli.sky.html">honeybee_radiance.cli.sky module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.cli.html#module-honeybee_radiance.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lib.html">honeybee_radiance.lib package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.lib.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.lib.modifiers.html">honeybee_radiance.lib.modifiers module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.lib.modifierset.html">honeybee_radiance.lib.modifierset module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.lib.html#module-honeybee_radiance.lib">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lightsource.html">honeybee_radiance.lightsource package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.lightsource.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.lightsource.sky.html">honeybee_radiance.lightsource.sky package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.lightsource.sky.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.lightsource.sky.certainirradiance.html">honeybee_radiance.lightsource.sky.certainirradiance module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.lightsource.sky.hemisphere.html">honeybee_radiance.lightsource.sky.hemisphere module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.lightsource.sky.html#module-honeybee_radiance.lightsource.sky">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.lightsource.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.lightsource.ground.html">honeybee_radiance.lightsource.ground module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.lightsource.html#module-honeybee_radiance.lightsource">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="honeybee_radiance.primitive.html">honeybee_radiance.primitive package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="honeybee_radiance.primitive.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.geometry.html">honeybee_radiance.primitive.geometry package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.geometry.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.bubble.html">honeybee_radiance.primitive.geometry.bubble module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.cone.html">honeybee_radiance.primitive.geometry.cone module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.cup.html">honeybee_radiance.primitive.geometry.cup module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.cylinder.html">honeybee_radiance.primitive.geometry.cylinder module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.geometrybase.html">honeybee_radiance.primitive.geometry.geometrybase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.instance.html">honeybee_radiance.primitive.geometry.instance module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.mesh.html">honeybee_radiance.primitive.geometry.mesh module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.polygon.html">honeybee_radiance.primitive.geometry.polygon module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.ring.html">honeybee_radiance.primitive.geometry.ring module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.source.html">honeybee_radiance.primitive.geometry.source module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.sphere.html">honeybee_radiance.primitive.geometry.sphere module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.geometry.tube.html">honeybee_radiance.primitive.geometry.tube module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.geometry.html#module-honeybee_radiance.primitive.geometry">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html">honeybee_radiance.primitive.material package</a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.antimatter.html">honeybee_radiance.primitive.material.antimatter module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.ashik2.html">honeybee_radiance.primitive.material.ashik2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.brtdfunc.html">honeybee_radiance.primitive.material.brtdfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.bsdf.html">honeybee_radiance.primitive.material.bsdf module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.dielectric.html">honeybee_radiance.primitive.material.dielectric module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glass.html">honeybee_radiance.primitive.material.glass module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glow.html">honeybee_radiance.primitive.material.glow module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.illum.html">honeybee_radiance.primitive.material.illum module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.interface.html">honeybee_radiance.primitive.material.interface module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.light.html">honeybee_radiance.primitive.material.light module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.materialbase.html">honeybee_radiance.primitive.material.materialbase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal.html">honeybee_radiance.primitive.material.metal module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal2.html">honeybee_radiance.primitive.material.metal2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metdata.html">honeybee_radiance.primitive.material.metdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metfunc.html">honeybee_radiance.primitive.material.metfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.mist.html">honeybee_radiance.primitive.material.mist module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasdata.html">honeybee_radiance.primitive.material.plasdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasfunc.html">honeybee_radiance.primitive.material.plasfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic.html">honeybee_radiance.primitive.material.plastic module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic2.html">honeybee_radiance.primitive.material.plastic2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism1.html">honeybee_radiance.primitive.material.prism1 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism2.html">honeybee_radiance.primitive.material.prism2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.spotlight.html">honeybee_radiance.primitive.material.spotlight module</a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#">honeybee_radiance.primitive.material.trans module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.trans2.html">honeybee_radiance.primitive.material.trans2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transdata.html">honeybee_radiance.primitive.material.transdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transfunc.html">honeybee_radiance.primitive.material.transfunc module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.material.html#module-honeybee_radiance.primitive.material">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.mixture.html">honeybee_radiance.primitive.mixture package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.mixture.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.mixture.mixdata.html">honeybee_radiance.primitive.mixture.mixdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.mixture.mixfunc.html">honeybee_radiance.primitive.mixture.mixfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.mixture.mixpict.html">honeybee_radiance.primitive.mixture.mixpict module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.mixture.mixtext.html">honeybee_radiance.primitive.mixture.mixtext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.mixture.mixturebase.html">honeybee_radiance.primitive.mixture.mixturebase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.mixture.html#module-honeybee_radiance.primitive.mixture">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.pattern.html">honeybee_radiance.primitive.pattern package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.pattern.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.brightdata.html">honeybee_radiance.primitive.pattern.brightdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.brightfunc.html">honeybee_radiance.primitive.pattern.brightfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.brighttext.html">honeybee_radiance.primitive.pattern.brighttext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.colordata.html">honeybee_radiance.primitive.pattern.colordata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.colorfunc.html">honeybee_radiance.primitive.pattern.colorfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.colorpict.html">honeybee_radiance.primitive.pattern.colorpict module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.colortext.html">honeybee_radiance.primitive.pattern.colortext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.pattern.patternbase.html">honeybee_radiance.primitive.pattern.patternbase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.pattern.html#module-honeybee_radiance.primitive.pattern">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.texture.html">honeybee_radiance.primitive.texture package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.texture.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.texture.texdata.html">honeybee_radiance.primitive.texture.texdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.texture.texfunc.html">honeybee_radiance.primitive.texture.texfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.texture.texturebase.html">honeybee_radiance.primitive.texture.texturebase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.texture.html#module-honeybee_radiance.primitive.texture">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.primitivebase.html">honeybee_radiance.primitive.primitivebase module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.putil.html">honeybee_radiance.primitive.putil module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#module-honeybee_radiance.primitive">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.modifierset.html">honeybee_radiance.modifierset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.parser.html">honeybee_radiance.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.properties.html">honeybee_radiance.properties module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.sensor.html">honeybee_radiance.sensor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.sensorgrid.html">honeybee_radiance.sensorgrid module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.view.html">honeybee_radiance.view module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.writer.html">honeybee_radiance.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#module-honeybee_radiance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="honeybee_radiance.html">honeybee_radiance package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="honeybee_radiance.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.cli.html">honeybee_radiance.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lib.html">honeybee_radiance.lib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lightsource.html">honeybee_radiance.lightsource package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="honeybee_radiance.primitive.html">honeybee_radiance.primitive package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="honeybee_radiance.primitive.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.geometry.html">honeybee_radiance.primitive.geometry package</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html">honeybee_radiance.primitive.material package</a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.antimatter.html">honeybee_radiance.primitive.material.antimatter module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.ashik2.html">honeybee_radiance.primitive.material.ashik2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.brtdfunc.html">honeybee_radiance.primitive.material.brtdfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.bsdf.html">honeybee_radiance.primitive.material.bsdf module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.dielectric.html">honeybee_radiance.primitive.material.dielectric module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glass.html">honeybee_radiance.primitive.material.glass module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glow.html">honeybee_radiance.primitive.material.glow module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.illum.html">honeybee_radiance.primitive.material.illum module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.interface.html">honeybee_radiance.primitive.material.interface module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.light.html">honeybee_radiance.primitive.material.light module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.materialbase.html">honeybee_radiance.primitive.material.materialbase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal.html">honeybee_radiance.primitive.material.metal module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal2.html">honeybee_radiance.primitive.material.metal2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metdata.html">honeybee_radiance.primitive.material.metdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metfunc.html">honeybee_radiance.primitive.material.metfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.mist.html">honeybee_radiance.primitive.material.mist module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasdata.html">honeybee_radiance.primitive.material.plasdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasfunc.html">honeybee_radiance.primitive.material.plasfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic.html">honeybee_radiance.primitive.material.plastic module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic2.html">honeybee_radiance.primitive.material.plastic2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism1.html">honeybee_radiance.primitive.material.prism1 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism2.html">honeybee_radiance.primitive.material.prism2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.spotlight.html">honeybee_radiance.primitive.material.spotlight module</a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#">honeybee_radiance.primitive.material.trans module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.trans2.html">honeybee_radiance.primitive.material.trans2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transdata.html">honeybee_radiance.primitive.material.transdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transfunc.html">honeybee_radiance.primitive.material.transfunc module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.material.html#module-honeybee_radiance.primitive.material">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.mixture.html">honeybee_radiance.primitive.mixture package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.pattern.html">honeybee_radiance.primitive.pattern package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.texture.html">honeybee_radiance.primitive.texture package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#module-honeybee_radiance.primitive">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#module-honeybee_radiance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="honeybee_radiance.primitive.material.spotlight.html" title="Previous Chapter: honeybee_radiance.primitive.material.spotlight module"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; honeybee_radi...</span>
+    </a>
+  </li>
+  <li>
+    <a href="honeybee_radiance.primitive.material.trans2.html" title="Next Chapter: honeybee_radiance.primitive.material.trans2 module"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">honeybee_radi... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/honeybee_radiance.primitive.material.trans.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="honeybee_radiance.html">honeybee_radiance package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="honeybee_radiance.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.cli.html">honeybee_radiance.cli package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lib.html">honeybee_radiance.lib package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="honeybee_radiance.lightsource.html">honeybee_radiance.lightsource package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="honeybee_radiance.primitive.html">honeybee_radiance.primitive package</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="honeybee_radiance.primitive.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.geometry.html">honeybee_radiance.primitive.geometry package</a></li>
+<li class="toctree-l5 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html">honeybee_radiance.primitive.material package</a><ul class="current">
+<li class="toctree-l6 current"><a class="reference internal" href="honeybee_radiance.primitive.material.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.antimatter.html">honeybee_radiance.primitive.material.antimatter module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.ashik2.html">honeybee_radiance.primitive.material.ashik2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.brtdfunc.html">honeybee_radiance.primitive.material.brtdfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.bsdf.html">honeybee_radiance.primitive.material.bsdf module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.dielectric.html">honeybee_radiance.primitive.material.dielectric module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glass.html">honeybee_radiance.primitive.material.glass module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.glow.html">honeybee_radiance.primitive.material.glow module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.illum.html">honeybee_radiance.primitive.material.illum module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.interface.html">honeybee_radiance.primitive.material.interface module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.light.html">honeybee_radiance.primitive.material.light module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.materialbase.html">honeybee_radiance.primitive.material.materialbase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal.html">honeybee_radiance.primitive.material.metal module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metal2.html">honeybee_radiance.primitive.material.metal2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metdata.html">honeybee_radiance.primitive.material.metdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.metfunc.html">honeybee_radiance.primitive.material.metfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.mist.html">honeybee_radiance.primitive.material.mist module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasdata.html">honeybee_radiance.primitive.material.plasdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plasfunc.html">honeybee_radiance.primitive.material.plasfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic.html">honeybee_radiance.primitive.material.plastic module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.plastic2.html">honeybee_radiance.primitive.material.plastic2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism1.html">honeybee_radiance.primitive.material.prism1 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.prism2.html">honeybee_radiance.primitive.material.prism2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.spotlight.html">honeybee_radiance.primitive.material.spotlight module</a></li>
+<li class="toctree-l7 current"><a class="current reference internal" href="#">honeybee_radiance.primitive.material.trans module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.trans2.html">honeybee_radiance.primitive.material.trans2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transdata.html">honeybee_radiance.primitive.material.transdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="honeybee_radiance.primitive.material.transfunc.html">honeybee_radiance.primitive.material.transfunc module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="honeybee_radiance.primitive.material.html#module-honeybee_radiance.primitive.material">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.mixture.html">honeybee_radiance.primitive.mixture package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.pattern.html">honeybee_radiance.primitive.pattern package</a></li>
+<li class="toctree-l5"><a class="reference internal" href="honeybee_radiance.primitive.texture.html">honeybee_radiance.primitive.texture package</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="honeybee_radiance.primitive.html#module-honeybee_radiance.primitive">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="honeybee_radiance.html#module-honeybee_radiance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <div class="section" id="module-honeybee_radiance.primitive.material.trans">
+<span id="honeybee-radiance-primitive-material-trans-module"></span><h1>honeybee_radiance.primitive.material.trans module<a class="headerlink" href="#module-honeybee_radiance.primitive.material.trans" title="Permalink to this headline">¶</a></h1>
+<p>Radiance Trans Material.</p>
+<p><a class="reference external" href="http://radsite.lbl.gov/radiance/refer/ray.html#Trans">http://radsite.lbl.gov/radiance/refer/ray.html#Trans</a>
+<a class="reference external" href="https://radiance-online.org//community/workshops/2010-freiburg/PDF/DavidMead.pdf">https://radiance-online.org//community/workshops/2010-freiburg/PDF/DavidMead.pdf</a></p>
+<dl class="class">
+<dt id="honeybee_radiance.primitive.material.trans.Trans">
+<em class="property">class </em><code class="descclassname">honeybee_radiance.primitive.material.trans.</code><code class="descname">Trans</code><span class="sig-paren">(</span><em>name</em>, <em>r_reflectance=0.0</em>, <em>g_reflectance=0.0</em>, <em>b_reflectance=0.0</em>, <em>specularity=0.0</em>, <em>roughness=0.0</em>, <em>transmitted_diff=0.0</em>, <em>transmitted_spec=0.0</em>, <em>modifier='void'</em>, <em>dependencies=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="honeybee_radiance.primitive.material.materialbase.html#honeybee_radiance.primitive.material.materialbase.Material" title="honeybee_radiance.primitive.material.materialbase.Material"><code class="xref py py-class docutils literal notranslate"><span class="pre">honeybee_radiance.primitive.material.materialbase.Material</span></code></a></p>
+<p>Radiance translucent material.</p>
+<dl class="classmethod">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.from_dict">
+<em class="property">classmethod </em><code class="descname">from_dict</code><span class="sig-paren">(</span><em>input_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans.from_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.from_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make radiance material from dict
+{</p>
+<blockquote>
+<div>“modifier”: {} or void, // Material modifier
+“type”: “trans”, // Material type
+“name”: “”, // Material Name
+“r_reflectance”: float, // Reflectance for red
+“g_reflectance”: float, // Reflectance for green
+“b_reflectance”: float, // Reflectance for blue
+“specularity”: float, // Material specularity
+“roughness”: float, // Material roughness
+“transmitted_diff”: float,
+“transmitted_spec”: float,
+“dependencies”: []</div></blockquote>
+<p>}</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.from_reflected_specularity">
+<em class="property">classmethod </em><code class="descname">from_reflected_specularity</code><span class="sig-paren">(</span><em>name</em>, <em>r_reflectance=0.0</em>, <em>g_reflectance=0.0</em>, <em>b_reflectance=0.0</em>, <em>reflected_specularity=0.0</em>, <em>roughness=0.0</em>, <em>transmitted_diff=0.0</em>, <em>transmitted_spec=0.0</em>, <em>modifier='void'</em>, <em>dependencies=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans.from_reflected_specularity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.from_reflected_specularity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create trans material from reflected specularity.</p>
+<p>Note:
+<a class="reference external" href="https://radiance-online.org//community/workshops/2010-freiburg/PDF/DavidMead.pdf">https://radiance-online.org//community/workshops/2010-freiburg/PDF/DavidMead.pdf</a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – Material name as a string. Do not use white space or special
+character.</li>
+<li><strong>r_reflectance</strong> – Reflectance for red. The value should be between 0 and 1
+(Default: 0).</li>
+<li><strong>g_reflectance</strong> – Reflectance for green. The value should be between 0 and 1
+(Default: 0).</li>
+<li><strong>b_reflectance</strong> – Reflectance for blue. The value should be between 0 and 1
+(Default: 0).</li>
+<li><strong>reflected_specularity</strong> – Fraction of reflected specular. The reflected
+specularity of common uncoated glass is around .06, Matte = min 0,
+Satin = suggested max 0.07 (Default: 0).</li>
+<li><strong>roughness</strong> – Roughness is specified as the rms slope of surface facets. A
+value of 0 corresponds to a perfectly smooth surface, and a value of 1
+would be a very rough surface. Roughness values greater than 0.2 are not
+very realistic. (Default: 0).</li>
+<li><strong>transmitted_diff</strong> – The transmitted diffuse component is the fraction of
+transmitted light that is transmitted diffusely in as scattering fashion.</li>
+<li><strong>transmitted_spec</strong> – The transmitted specular component is the fraction of
+transmitted light that is not diffusely scattered.</li>
+<li><strong>modifier</strong> – Material modifier (Default: “void”).</li>
+<li><strong>dependencies</strong> – A list of primitives that this primitive depends on. This
+argument is only useful for defining advanced primitives where the
+primitive is defined based on other primitives. (Default: [])</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.from_single_reflectance">
+<em class="property">classmethod </em><code class="descname">from_single_reflectance</code><span class="sig-paren">(</span><em>name</em>, <em>rgb_reflectance=0.0</em>, <em>specularity=0.0</em>, <em>roughness=0.0</em>, <em>transmitted_diff=0.0</em>, <em>transmitted_spec=0.0</em>, <em>modifier='void'</em>, <em>dependencies=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans.from_single_reflectance"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.from_single_reflectance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create trans material with single reflectance value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> – Material name as a string. Do not use white space or special character</li>
+<li><strong>rgb_reflectance</strong> – Reflectance for red, green and blue. The value should be
+between 0 and 1 (Default: 0).</li>
+<li><strong>specularity</strong> – Fraction of specularity. Specularity fractions greater than 0.1
+are not realistic (Default: 0).</li>
+<li><strong>roughness</strong> – Roughness is specified as the rms slope of surface facets. A value
+of 0 corresponds to a perfectly smooth surface, and a value of 1 would be
+a very rough surface. Roughness values greater than 0.2 are not very
+realistic. (Default: 0).</li>
+<li><strong>transmitted_diff</strong> – The transmitted diffuse component is the fraction of
+transmitted light that is transmitted diffusely in as scattering fashion.</li>
+<li><strong>transmitted_spec</strong> – The transmitted specular component is the fraction of
+transmitted light that is not diffusely scattered.</li>
+<li><strong>modifier</strong> – Material modifier (Default: “void”).</li>
+<li><strong>dependencies</strong> – A list of primitives that this primitive depends on. This
+argument is only useful for defining advanced primitives where the
+primitive is defined based on other primitives. (Default: [])</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.from_values">
+<em class="property">classmethod </em><code class="descname">from_values</code><span class="sig-paren">(</span><em>values_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans.from_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.from_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make a radiance primitive from value dict.</p>
+<dl class="docutils">
+<dt>{</dt>
+<dd>“modifier”: “”, // primitive modifier (Default: “void”)
+“type”: “”, // primitive type
+“name”: “”, // primitive Name
+“values”: {} // values,
+“dependencies”: []</dd>
+</dl>
+<p>}</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.to_dict">
+<code class="descname">to_dict</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/honeybee_radiance/primitive/material/trans.html#Trans.to_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.to_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Translate radiance material to dict
+{</p>
+<blockquote>
+<div>“type”: “trans”, // Material type
+“name”: “”, // Material Name
+“r_reflectance”: float, // Reflectance for red
+“g_reflectance”: float, // Reflectance for green
+“b_reflectance”: float, // Reflectance for blue
+“specularity”: float, // Material specularity
+“roughness”: float, // Material roughness
+“transmitted_diff”: float,
+“transmitted_spec”: float,
+“dependencies”: []</div></blockquote>
+<p>}</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.average_reflectance">
+<code class="descname">average_reflectance</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.average_reflectance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate average reflectance of trans material.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.b_reflectance">
+<code class="descname">b_reflectance</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.b_reflectance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reflectance for blue channel.</p>
+<p>The value should be between 0 and 1 (Default: 0).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.g_reflectance">
+<code class="descname">g_reflectance</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.g_reflectance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reflectance for green channel.</p>
+<p>The value should be between 0 and 1 (Default: 0).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.r_reflectance">
+<code class="descname">r_reflectance</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.r_reflectance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reflectance for red channel.</p>
+<p>The value should be between 0 and 1 (Default: 0).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.roughness">
+<code class="descname">roughness</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.roughness" title="Permalink to this definition">¶</a></dt>
+<dd><p>Roughness is specified as the rms slope of surface facets.</p>
+<p>A value of 0 corresponds to a perfectly smooth surface, and a value of 1
+would be a very rough surface. Roughness values greater than 0.2 are not
+very realistic. (Default: 0).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.specular_sampling_threshold">
+<code class="descname">specular_sampling_threshold</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.specular_sampling_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Suggested specular sampling threshold (-st).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.specularity">
+<code class="descname">specularity</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.specularity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fraction of specularity.</p>
+<p>In most cases specularity fractions greater than 0.1 are not realistic
+(Default: 0).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.transmitted_diff">
+<code class="descname">transmitted_diff</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.transmitted_diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmitted diffuse.</p>
+<p>The transmitted diffuse component is the fraction of transmitted light that is
+transmitted diffusely in as scattering fashion.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="honeybee_radiance.primitive.material.trans.Trans.transmitted_spec">
+<code class="descname">transmitted_spec</code><a class="headerlink" href="#honeybee_radiance.primitive.material.trans.Trans.transmitted_spec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transmitted specular.</p>
+<p>The transmitted specular component is the fraction of transmitted light that is
+not diffusely scattered.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

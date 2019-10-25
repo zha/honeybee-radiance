@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.light module
+==================================================
+
+.. automodule:: honeybee_radiance.primitive.material.light
+    :members:
+    :undoc-members:
+    :show-inheritance:

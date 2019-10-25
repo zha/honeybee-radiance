@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>honeybee_radiance.view &#8212; honeybee radiance  documentation</title>
+    <link rel="stylesheet" href="../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../index.html">
+          honeybee radiance</a>
+        <span class="navbar-text navbar-version pull-left"><b></b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../honeybee_radiance.html">honeybee_radiance package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../honeybee_radiance.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.cli.html">honeybee_radiance.cli package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.cli.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.cli.grid.html">honeybee_radiance.cli.grid module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.cli.sky.html">honeybee_radiance.cli.sky module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.cli.html#module-honeybee_radiance.cli">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.lib.html">honeybee_radiance.lib package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.lib.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.lib.modifiers.html">honeybee_radiance.lib.modifiers module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.lib.modifierset.html">honeybee_radiance.lib.modifierset module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.lib.html#module-honeybee_radiance.lib">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.lightsource.html">honeybee_radiance.lightsource package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.lightsource.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.lightsource.sky.html">honeybee_radiance.lightsource.sky package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.lightsource.sky.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.lightsource.sky.certainirradiance.html">honeybee_radiance.lightsource.sky.certainirradiance module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.lightsource.sky.hemisphere.html">honeybee_radiance.lightsource.sky.hemisphere module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.lightsource.sky.html#module-honeybee_radiance.lightsource.sky">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.lightsource.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.lightsource.ground.html">honeybee_radiance.lightsource.ground module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.lightsource.html#module-honeybee_radiance.lightsource">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.primitive.html">honeybee_radiance.primitive package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.primitive.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.html">honeybee_radiance.primitive.geometry package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.bubble.html">honeybee_radiance.primitive.geometry.bubble module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.cone.html">honeybee_radiance.primitive.geometry.cone module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.cup.html">honeybee_radiance.primitive.geometry.cup module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.cylinder.html">honeybee_radiance.primitive.geometry.cylinder module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.geometrybase.html">honeybee_radiance.primitive.geometry.geometrybase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.instance.html">honeybee_radiance.primitive.geometry.instance module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.mesh.html">honeybee_radiance.primitive.geometry.mesh module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.polygon.html">honeybee_radiance.primitive.geometry.polygon module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.ring.html">honeybee_radiance.primitive.geometry.ring module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.source.html">honeybee_radiance.primitive.geometry.source module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.sphere.html">honeybee_radiance.primitive.geometry.sphere module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.tube.html">honeybee_radiance.primitive.geometry.tube module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.geometry.html#module-honeybee_radiance.primitive.geometry">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.material.html">honeybee_radiance.primitive.material package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.material.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.antimatter.html">honeybee_radiance.primitive.material.antimatter module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.ashik2.html">honeybee_radiance.primitive.material.ashik2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.brtdfunc.html">honeybee_radiance.primitive.material.brtdfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.bsdf.html">honeybee_radiance.primitive.material.bsdf module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.dielectric.html">honeybee_radiance.primitive.material.dielectric module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.glass.html">honeybee_radiance.primitive.material.glass module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.glow.html">honeybee_radiance.primitive.material.glow module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.illum.html">honeybee_radiance.primitive.material.illum module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.interface.html">honeybee_radiance.primitive.material.interface module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.light.html">honeybee_radiance.primitive.material.light module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.materialbase.html">honeybee_radiance.primitive.material.materialbase module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.metal.html">honeybee_radiance.primitive.material.metal module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.metal2.html">honeybee_radiance.primitive.material.metal2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.metdata.html">honeybee_radiance.primitive.material.metdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.metfunc.html">honeybee_radiance.primitive.material.metfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.mist.html">honeybee_radiance.primitive.material.mist module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.plasdata.html">honeybee_radiance.primitive.material.plasdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.plasfunc.html">honeybee_radiance.primitive.material.plasfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.plastic.html">honeybee_radiance.primitive.material.plastic module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.plastic2.html">honeybee_radiance.primitive.material.plastic2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.prism1.html">honeybee_radiance.primitive.material.prism1 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.prism2.html">honeybee_radiance.primitive.material.prism2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.spotlight.html">honeybee_radiance.primitive.material.spotlight module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.trans.html">honeybee_radiance.primitive.material.trans module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.trans2.html">honeybee_radiance.primitive.material.trans2 module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.transdata.html">honeybee_radiance.primitive.material.transdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.material.transfunc.html">honeybee_radiance.primitive.material.transfunc module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.material.html#module-honeybee_radiance.primitive.material">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.html">honeybee_radiance.primitive.mixture package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.mixdata.html">honeybee_radiance.primitive.mixture.mixdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.mixfunc.html">honeybee_radiance.primitive.mixture.mixfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.mixpict.html">honeybee_radiance.primitive.mixture.mixpict module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.mixtext.html">honeybee_radiance.primitive.mixture.mixtext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.mixturebase.html">honeybee_radiance.primitive.mixture.mixturebase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.mixture.html#module-honeybee_radiance.primitive.mixture">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.html">honeybee_radiance.primitive.pattern package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.brightdata.html">honeybee_radiance.primitive.pattern.brightdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.brightfunc.html">honeybee_radiance.primitive.pattern.brightfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.brighttext.html">honeybee_radiance.primitive.pattern.brighttext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.colordata.html">honeybee_radiance.primitive.pattern.colordata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.colorfunc.html">honeybee_radiance.primitive.pattern.colorfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.colorpict.html">honeybee_radiance.primitive.pattern.colorpict module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.colortext.html">honeybee_radiance.primitive.pattern.colortext module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.patternbase.html">honeybee_radiance.primitive.pattern.patternbase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.pattern.html#module-honeybee_radiance.primitive.pattern">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.html">honeybee_radiance.primitive.texture package</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.html#submodules">Submodules</a><ul>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.texdata.html">honeybee_radiance.primitive.texture.texdata module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.texfunc.html">honeybee_radiance.primitive.texture.texfunc module</a></li>
+<li class="toctree-l7"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.texturebase.html">honeybee_radiance.primitive.texture.texturebase module</a></li>
+</ul>
+</li>
+<li class="toctree-l6"><a class="reference internal" href="../../honeybee_radiance.primitive.texture.html#module-honeybee_radiance.primitive.texture">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.primitive.html#submodules">Submodules</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.primitivebase.html">honeybee_radiance.primitive.primitivebase module</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../honeybee_radiance.primitive.putil.html">honeybee_radiance.primitive.putil module</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../honeybee_radiance.primitive.html#module-honeybee_radiance.primitive">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../honeybee_radiance.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.modifierset.html">honeybee_radiance.modifierset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.parser.html">honeybee_radiance.parser module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.properties.html">honeybee_radiance.properties module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.sensor.html">honeybee_radiance.sensor module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.sensorgrid.html">honeybee_radiance.sensorgrid module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.view.html">honeybee_radiance.view module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../honeybee_radiance.writer.html">honeybee_radiance.writer module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../honeybee_radiance.html#module-honeybee_radiance">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../honeybee_radiance.html">honeybee_radiance package</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../honeybee_radiance.html">honeybee_radiance package</a></li>
+</ul>
+
+        </div>
+      </div>
+    <div class="col-md-9 content">
+      
+  <h1>Source code for honeybee_radiance.view</h1><div class="highlight"><pre>
+<span></span><span class="c1"># coding=utf-8</span>
+<span class="sa">u</span><span class="sd">&quot;&quot;&quot;Create a Radiance view.&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">division</span>
+<span class="kn">import</span> <span class="nn">honeybee.typing</span> <span class="k">as</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">honeybee_radiance.parser</span> <span class="k">as</span> <span class="nn">parser</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="k">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">ladybug_geometry.geometry3d.pointvector</span> <span class="k">as</span> <span class="nn">pv</span>
+<span class="kn">import</span> <span class="nn">ladybug_geometry.geometry3d.plane</span> <span class="k">as</span> <span class="nn">plane</span>
+<span class="kn">import</span> <span class="nn">ladybug.futil</span> <span class="k">as</span> <span class="nn">futil</span>
+<span class="kn">from</span> <span class="nn">honeybee_radiance_command.options</span> <span class="k">import</span> <span class="n">BoolOption</span><span class="p">,</span> <span class="n">TupleOption</span><span class="p">,</span> \
+    <span class="n">StringOptionJoined</span><span class="p">,</span> <span class="n">NumericOption</span>
+
+
+<div class="viewcode-block" id="View"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View">[docs]</a><span class="k">class</span> <span class="nc">View</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sa">u</span><span class="sd">&quot;&quot;&quot;A Radiance view.</span>
+
+<span class="sd">    Usage:</span>
+
+<span class="sd">        v = View()</span>
+<span class="sd">        # add a fore clip</span>
+<span class="sd">        v.fore_clip = 100</span>
+<span class="sd">        print(v)</span>
+
+<span class="sd">        &gt; -vtv -vp 0.000 0.000 0.000 -vd 0.000 0.000 1.000 -vu 0.000 1.000</span>
+<span class="sd">           0.000 -vh 60.000 -vv 60.000 -vo 100.000</span>
+
+<span class="sd">        # split the view into a view grid</span>
+<span class="sd">        gridViews = v.grid(2, 2, 600, 600)</span>
+<span class="sd">        for g in gridViews:</span>
+<span class="sd">            print(g)</span>
+
+<span class="sd">        &gt; -vtv -vp 0.000 0.000 0.000 -vd 0.000 0.000 1.000 -vu 0.000 1.000</span>
+<span class="sd">           0.000 -vh 29.341 -vv 32.204  -vs -0.500 -vl -0.500 -vo 100.000</span>
+
+<span class="sd">        &gt; -vtv -vp 0.000 0.000 0.000 -vd 0.000 0.000 1.000 -vu 0.000 1.000</span>
+<span class="sd">           0.000 -vh 29.341 -vv 32.204 -vs 0.500 -vl -0.500 -vo 100.000</span>
+
+<span class="sd">        &gt; -vtv -vp 0.000 0.000 0.000 -vd 0.000 0.000 1.000 -vu 0.000 1.000</span>
+<span class="sd">           0.000 -vh 29.341 -vv 32.204 -vs -0.500 -vl 0.500 -vo 100.000</span>
+
+<span class="sd">        &gt; -vtv -vp 0.000 0.000 0.000 -vd 0.000 0.000 1.000 -vu 0.000 1.000</span>
+<span class="sd">          0.000 -vh 29.341 -vv 32.204 -vs 0.500 -vl 0.500 -vo 100.000</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">up_vector</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">&#39;v&#39;</span><span class="p">,</span>
+                 <span class="n">h_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">v_size</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span> <span class="n">shift</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lift</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sa">u</span><span class="sd">&quot;&quot;&quot;Create a view.</span>
+
+<span class="sd">        Arg:</span>
+<span class="sd">            position: Set the view position (-vp) to (x, y, z). This is the focal</span>
+<span class="sd">                point of a perspective view or the center of a parallel projection.</span>
+<span class="sd">                Default: (0, 0, 0)</span>
+<span class="sd">            direction: Set the view direction (-vd) vector to (x, y, z). The</span>
+<span class="sd">                length of this vector indicates the focal distance as needed by</span>
+<span class="sd">                the pixel depth of field (-pd) in rpict. Default: (0, 0, 1)</span>
+<span class="sd">            up_vector: Set the view up (-vu) vector (vertical direction) to</span>
+<span class="sd">                (x, y, z) default: (0, 1, 0).</span>
+<span class="sd">            type: Set view type (-vt) to one of the choices below.</span>
+<span class="sd">                    0 - Perspective (v)</span>
+<span class="sd">                    1 - Hemispherical fisheye (h)</span>
+<span class="sd">                    2 - Parallel (l)</span>
+<span class="sd">                    3 - Cylindrical panoroma (c)</span>
+<span class="sd">                    4 - Angular fisheye (a)</span>
+<span class="sd">                    5 - Planisphere [stereographic] projection (s)</span>
+<span class="sd">                For more detailed description about view types check rpict manual</span>
+<span class="sd">                page: (http://radsite.lbl.gov/radiance/man_html/rpict.1.html)</span>
+<span class="sd">            h_size: Set the view horizontal size (-vh). For a perspective</span>
+<span class="sd">                projection (including fisheye views), val is the horizontal field</span>
+<span class="sd">                of view (in degrees). For a parallel projection, val is the view</span>
+<span class="sd">                width in world coordinates.</span>
+<span class="sd">            v_size: Set the view vertical size (-vv). For a perspective</span>
+<span class="sd">                projection (including fisheye views), val is the horizontal field</span>
+<span class="sd">                of view (in degrees). For a parallel projection, val is the view</span>
+<span class="sd">                width in world coordinates.</span>
+<span class="sd">            shift: Set the view shift (-vs). This is the amount the actual</span>
+<span class="sd">                image will be shifted to the right of the specified view. This</span>
+<span class="sd">                option is useful for generating skewed perspectives or rendering</span>
+<span class="sd">                an image a piece at a time. A value of 1 means that the rendered</span>
+<span class="sd">                image starts just to the right of the normal view. A value of -1</span>
+<span class="sd">                would be to the left. Larger or fractional values are permitted</span>
+<span class="sd">                as well.</span>
+<span class="sd">            lift: Set the view lift (-vl) to a value. This is the amount the</span>
+<span class="sd">                actual image will be lifted up from the specified view.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_position</span> <span class="o">=</span> <span class="n">TupleOption</span><span class="p">(</span>
+            <span class="s1">&#39;vp&#39;</span><span class="p">,</span> <span class="s1">&#39;view position&#39;</span><span class="p">,</span> <span class="n">position</span> <span class="k">if</span> <span class="n">position</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span> <span class="o">=</span> <span class="n">TupleOption</span><span class="p">(</span>
+            <span class="s1">&#39;vd&#39;</span><span class="p">,</span> <span class="s1">&#39;view direction&#39;</span><span class="p">,</span> <span class="n">direction</span> <span class="k">if</span> <span class="n">direction</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_up_vector</span> <span class="o">=</span> <span class="n">TupleOption</span><span class="p">(</span>
+            <span class="s1">&#39;vu&#39;</span><span class="p">,</span> <span class="s1">&#39;view up vector&#39;</span><span class="p">,</span> <span class="n">up_vector</span> <span class="k">if</span> <span class="n">up_vector</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_h_size</span> <span class="o">=</span> <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;vh&#39;</span><span class="p">,</span> <span class="s1">&#39;view horizontal size&#39;</span><span class="p">,</span> <span class="n">h_size</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_v_size</span> <span class="o">=</span> <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;vv&#39;</span><span class="p">,</span> <span class="s1">&#39;view vertical size&#39;</span><span class="p">,</span> <span class="n">v_size</span><span class="p">,</span> <span class="n">min_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shift</span> <span class="o">=</span> <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;vs&#39;</span><span class="p">,</span> <span class="s1">&#39;view shift&#39;</span><span class="p">,</span> <span class="n">shift</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lift</span> <span class="o">=</span>  <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;vl&#39;</span><span class="p">,</span> <span class="s1">&#39;view lift&#39;</span><span class="p">,</span> <span class="n">lift</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">=</span> <span class="n">StringOptionJoined</span><span class="p">(</span>
+            <span class="s1">&#39;vt&#39;</span><span class="p">,</span> <span class="s1">&#39;view type&#39;</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="n">valid_values</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;v&#39;</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;l&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="c1"># set for_clip to None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fore_clip</span> <span class="o">=</span> <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;vo&#39;</span><span class="p">,</span> <span class="s1">&#39;view fore clip&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aft_clip</span> <span class="o">=</span> <span class="n">NumericOption</span><span class="p">(</span><span class="s1">&#39;va&#39;</span><span class="p">,</span> <span class="s1">&#39;view aft clip&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;AnalysisGrid name.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name</span>
+
+    <span class="nd">@name</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">valid_string</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">is_fisheye</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check if the view type is one of the fisheye views.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set and get view type (-vt) to one of the choices below.</span>
+
+<span class="sd">        v - Perspective (v), h - Hemispherical fisheye (h),</span>
+<span class="sd">        l - Parallel (l),    c - Cylindrical panorma (c),</span>
+<span class="sd">        a - Angular fisheye (a),</span>
+<span class="sd">        s - Planisphere [stereographic] projection (s)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View type as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@type</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span>  <span class="c1"># this will handle both vtv and v inputs</span>
+
+        <span class="c1"># set view size to 180 degrees for fisheye views</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;s&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span> <span class="o">!=</span> <span class="mi">180</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">180</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changed h_size to 180 for fisheye view type.&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span> <span class="o">!=</span> <span class="mi">180</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span> <span class="o">=</span> <span class="mi">180</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Changed v_size to 180 for fisheye view type.&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span> <span class="o">&lt;</span> <span class="mi">180</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{}</span><span class="s1"> is an invalid horizontal view size for Perspective view.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;The size should be smaller than 180.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h_size</span><span class="p">))</span>
+            <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span> <span class="o">&lt;</span> <span class="mi">180</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s1">&#39;</span><span class="se">\n</span><span class="si">{}</span><span class="s1"> is an invalid vertical view size for Perspective view.</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;The size should be smaller than 180.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view position (-vp) to (x, y, z).</span>
+
+<span class="sd">        This is the focal point of a perspective view or the center of a parallel</span>
+<span class="sd">        projection. Default: (0, 0, 0)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View point / position as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@position</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_position</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view direction (-vd) vector to (x, y, z).</span>
+
+<span class="sd">        The length of this vector indicates the focal distance as needed by</span>
+<span class="sd">        the pixel depth of field (-pd) in rpict. Default: (0, 0, 1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vd</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View direction as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@direction</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_direction</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">up_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set and get the view up (-vu) vector (vertical direction) to (x, y, z)</span>
+
+<span class="sd">        Default: (0, 1, 0).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_up_vector</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View up as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_up_vector</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@up_vector</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">up_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_up_vector</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">h_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view horizontal size (-vh).</span>
+
+<span class="sd">        For a perspective projection (including fisheye views), val is the horizontal</span>
+<span class="sd">        field of view (in degrees). For a parallel projection, val is the view</span>
+<span class="sd">        width in world coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_h_size</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View horizontal size as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_h_size</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@h_size</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">h_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_h_size</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">60</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">v_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view vertical size (-vv).</span>
+
+<span class="sd">        For a perspective projection (including fisheye views), val is the horizontal</span>
+<span class="sd">        field of view (in degrees). For a parallel projection, val is the view width in</span>
+<span class="sd">        world coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_v_size</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vv</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View vertical size as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@v_size</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">v_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_v_size</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">60</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view shift (-vs).</span>
+
+<span class="sd">        This is the amount the actual image will be shifted to the right of the specified</span>
+<span class="sd">        view. This option is useful for generating skewed perspectives or rendering an</span>
+<span class="sd">        image a piece at a time. A value of 1 means that the rendered image starts just</span>
+<span class="sd">        to the right of the normal view. A value of -1 would be to the left. Larger or</span>
+<span class="sd">        fractional values are permitted as well.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shift</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View shift as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shift</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@shift</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_shift</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">lift</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Set the view lift (-vl) to a value.</span>
+
+<span class="sd">        This is the amount the actual image will be lifted up from the specified view.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lift</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vl</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View lift as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lift</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@lift</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">lift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lift</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">fore_clip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View fore clip (-vo) at a distance from the view point.</span>
+
+<span class="sd">        The plane will be perpendicular to the view direction for perspective</span>
+<span class="sd">        and parallel view types. For fisheye view types, the clipping plane is</span>
+<span class="sd">        actually a clipping sphere, centered on the view point with radius val.</span>
+<span class="sd">        Objects in front of this imaginary surface will not be visible. This may</span>
+<span class="sd">        be useful for seeing through walls (to get a longer perspective from an</span>
+<span class="sd">        exterior view point) or for incremental rendering. A value of zero implies</span>
+<span class="sd">        no foreground clipping. A negative value produces some interesting effects,</span>
+<span class="sd">        since it creates an inverted image for objects behind the viewpoint.</span>
+<span class="sd">        &quot;&quot;&quot;</span>        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fore_clip</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vo</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View fore clip as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fore_clip</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@fore_clip</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">fore_clip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fore_clip</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">distance</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">aft_clip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View aft clip (-va) at a distance from the view point.</span>
+
+<span class="sd">        Set the view aft clipping plane at a distance of val from the view point. Like</span>
+<span class="sd">        the view fore plane, it will be perpendicular to the view direction for</span>
+<span class="sd">        perspective and parallel view types. For fisheye view types, the clipping plane</span>
+<span class="sd">        is actually a clipping sphere, centered on the view point with radius val.</span>
+<span class="sd">        Objects behind this imaginary surface will not be visible. A value of zero means</span>
+<span class="sd">        no aft clipping, and is the only way to see infinitely distant objects such as</span>
+<span class="sd">        the sky.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aft_clip</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">va</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View aft clip as a string in radiance format.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_aft_clip</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+
+    <span class="nd">@aft_clip</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span> <span class="nf">aft_clip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_aft_clip</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">distance</span>
+
+<div class="viewcode-block" id="View.from_dict"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.from_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">view_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a view from a dictionary.&quot;&quot;&quot;</span>
+
+        <span class="n">view</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">],</span>
+            <span class="n">position</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">],</span>
+            <span class="n">direction</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;direction&#39;</span><span class="p">],</span>
+            <span class="n">up_vector</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;up_vector&#39;</span><span class="p">],</span>
+            <span class="n">h_size</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;h_size&#39;</span><span class="p">],</span>
+            <span class="n">v_size</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;v_size&#39;</span><span class="p">],</span>
+            <span class="n">shift</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;shift&#39;</span><span class="p">],</span>
+            <span class="n">lift</span><span class="o">=</span><span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">],</span>
+        <span class="p">)</span>
+
+        <span class="n">view</span><span class="o">.</span><span class="n">fore_clip</span> <span class="o">=</span> <span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;fore_clip&#39;</span><span class="p">]</span>
+        <span class="n">view</span><span class="o">.</span><span class="n">aft_clip</span> <span class="o">=</span> <span class="n">view_dict</span><span class="p">[</span><span class="s1">&#39;aft_clip&#39;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">view</span></div>
+
+<div class="viewcode-block" id="View.from_string"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.from_string">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_string</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">view_string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create a view object from a string.</span>
+<span class="sd">        </span>
+<span class="sd">        This method is similar to from_string method for radiance parameters with the</span>
+<span class="sd">        difference that all the parameters that are not related to view will be ignored.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mapper</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;vp&#39;</span><span class="p">:</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span> <span class="s1">&#39;vd&#39;</span><span class="p">:</span> <span class="s1">&#39;direction&#39;</span><span class="p">,</span> <span class="s1">&#39;vu&#39;</span><span class="p">:</span> <span class="s1">&#39;up_vector&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;vh&#39;</span><span class="p">:</span> <span class="s1">&#39;h_size&#39;</span><span class="p">,</span> <span class="s1">&#39;vv&#39;</span><span class="p">:</span> <span class="s1">&#39;v_size&#39;</span><span class="p">,</span> <span class="s1">&#39;vs&#39;</span><span class="p">:</span> <span class="s1">&#39;shift&#39;</span><span class="p">,</span> <span class="s1">&#39;vl&#39;</span><span class="p">:</span> <span class="s1">&#39;lift&#39;</span><span class="p">,</span>
+            <span class="s1">&#39;vo&#39;</span><span class="p">:</span> <span class="s1">&#39;fore_clip&#39;</span><span class="p">,</span> <span class="s1">&#39;va&#39;</span><span class="p">:</span> <span class="s1">&#39;aft_clip&#39;</span>
+        <span class="p">}</span>
+
+        <span class="n">base</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;up_vector&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> 
+            <span class="s1">&#39;h_size&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;v_size&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;shift&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;lift&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;fore_clip&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="s1">&#39;aft_clip&#39;</span><span class="p">:</span> <span class="kc">None</span>
+        <span class="p">}</span>
+
+        <span class="c1"># parse the string here</span>
+        <span class="n">options</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_radiance_options</span><span class="p">(</span><span class="n">view_string</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">opt</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">options</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">opt</span> <span class="ow">in</span> <span class="n">mapper</span><span class="p">:</span>
+                <span class="n">base</span><span class="p">[</span><span class="n">mapper</span><span class="p">[</span><span class="n">opt</span><span class="p">]]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">elif</span> <span class="n">opt</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;vt&#39;</span><span class="p">:</span>
+                <span class="n">base</span><span class="p">[</span><span class="s1">&#39;type&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">opt</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1"> is not a view parameter and is ignored.&#39;</span> <span class="o">%</span> <span class="n">opt</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">base</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="View.from_file"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.from_file">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Create view from a view file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            file_path: Full path to view file.</span>
+<span class="sd">            name: Optional name for this view. View name will be set to file name if not</span>
+<span class="sd">            provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t find </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">file_path</span><span class="p">))</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">0</span><span class="p">])[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">input_data</span><span class="p">:</span>
+            <span class="n">view_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">input_data</span><span class="o">.</span><span class="n">read</span><span class="p">())</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+        <span class="k">assert</span> <span class="n">view_string</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;rvu&#39;</span><span class="p">,</span> \
+            <span class="s1">&#39;View file must start with rvu not </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">view_string</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_string</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">view_string</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="View.dimension"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.dimension">[docs]</a>    <span class="k">def</span> <span class="nf">dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_res</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get dimensions for this view as &#39;-x %d -y %d [-ld-]&#39;.</span>
+
+<span class="sd">        This method is same as vwrays -d. Default values for x_res and y_res are set to</span>
+<span class="sd">        match Radiance defaults.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimension_x_y</span><span class="p">(</span><span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s1">&#39;-x </span><span class="si">%d</span><span class="s1"> -y </span><span class="si">%d</span><span class="s1"> -ld</span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span>
+            <span class="s1">&#39;-&#39;</span> <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fore_clip</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">aft_clip</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+            <span class="k">else</span> <span class="s1">&#39;+&#39;</span>
+        <span class="p">)</span></div>
+
+<div class="viewcode-block" id="View.dimension_x_y"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.dimension_x_y">[docs]</a>    <span class="k">def</span> <span class="nf">dimension_x_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_res</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_res</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Get dimensions for this view as x, y.</span>
+<span class="sd">        </span>
+<span class="sd">        Default values for x_res and y_res are set to match Radiance defaults.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># radiance default is 512</span>
+        <span class="n">x_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x_res</span><span class="p">)</span> <span class="k">if</span> <span class="n">x_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">512</span>
+        <span class="n">y_res</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">y_res</span><span class="p">)</span> <span class="k">if</span> <span class="n">y_res</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="mi">512</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fisheye</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">x_res</span><span class="p">,</span> <span class="n">y_res</span><span class="p">)</span>
+
+        <span class="n">vh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">vv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="o">.</span><span class="n">value</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span>
+            <span class="n">hv_ratio</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">vh</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span> <span class="o">/</span> \
+                <span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">vv</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hv_ratio</span> <span class="o">=</span> <span class="n">vh</span> <span class="o">/</span> <span class="n">vv</span>
+
+        <span class="c1"># radiance keeps the largest max size and tries to scale the other size</span>
+        <span class="c1"># to fit the aspect ratio. In case the size doesn&#39;t match it reverses</span>
+        <span class="c1"># the process.</span>
+        <span class="k">if</span> <span class="n">y_res</span> <span class="o">&lt;=</span> <span class="n">x_res</span><span class="p">:</span>
+            <span class="n">new_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">hv_ratio</span> <span class="o">*</span> <span class="n">y_res</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">new_x</span> <span class="o">&lt;=</span> <span class="n">x_res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">new_x</span><span class="p">,</span> <span class="n">y_res</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x_res</span> <span class="o">/</span> <span class="n">hv_ratio</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">x_res</span><span class="p">,</span> <span class="n">new_y</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">new_y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x_res</span> <span class="o">/</span> <span class="n">hv_ratio</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">new_y</span> <span class="o">&lt;=</span> <span class="n">y_res</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">x_res</span><span class="p">,</span> <span class="n">new_y</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">hv_ratio</span> <span class="o">*</span> <span class="n">y_res</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">new_x</span><span class="p">,</span> <span class="n">y_res</span></div>
+
+<div class="viewcode-block" id="View.grid"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.grid">[docs]</a>    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_div_count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">y_div_count</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Break-down the view into a grid of views based on x and y grid count.</span>
+
+<span class="sd">        Views will be returned row by row from right to left.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            x_div_count: Set number of divisions in x direction (Default: 1).</span>
+<span class="sd">            y_div_count: Set number of divisions in y direction (Default: 1).</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A tuple of views. Views are sorted row by row from right to left.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">PI</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">x_div_count</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x_div_count</span><span class="p">)</span>
+            <span class="n">y_div_count</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">y_div_count</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Division count should be a number.</span><span class="se">\n</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+
+        <span class="k">assert</span> <span class="n">x_div_count</span> <span class="o">*</span> <span class="n">y_div_count</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Division count should be larger than 0.&quot;</span>
+
+        <span class="k">if</span> <span class="n">x_div_count</span> <span class="o">==</span> <span class="n">y_div_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+
+        <span class="n">_views</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">x_div_count</span> <span class="o">*</span> <span class="n">y_div_count</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
+            <span class="c1"># parallel view (vtl)</span>
+            <span class="n">_vh</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span> <span class="o">/</span> <span class="n">x_div_count</span>
+            <span class="n">_vv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span> <span class="o">/</span> <span class="n">y_div_count</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="s1">&#39;v&#39;</span><span class="p">:</span>
+            <span class="c1"># perspective (vtv)</span>
+            <span class="n">_vh</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="mf">180.</span> <span class="o">/</span> <span class="n">PI</span><span class="p">)</span> <span class="o">*</span> \
+                <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(((</span><span class="n">PI</span> <span class="o">/</span> <span class="mf">180.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">x_div_count</span><span class="p">)</span>
+            <span class="n">_vv</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="mf">180.</span> <span class="o">/</span> <span class="n">PI</span><span class="p">)</span> <span class="o">*</span> \
+                <span class="n">math</span><span class="o">.</span><span class="n">atan</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">tan</span><span class="p">((</span><span class="n">PI</span> <span class="o">/</span> <span class="mf">180.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_div_count</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fisheye</span><span class="p">:</span>
+            <span class="c1"># fish eye</span>
+            <span class="n">_vh</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="mf">180.</span> <span class="o">/</span> <span class="n">PI</span><span class="p">)</span> <span class="o">*</span> \
+                <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">PI</span> <span class="o">/</span> <span class="mf">180.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">x_div_count</span><span class="p">)</span>
+            <span class="n">_vv</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.</span> <span class="o">*</span> <span class="mf">180.</span> <span class="o">/</span> <span class="n">PI</span><span class="p">)</span> <span class="o">*</span> \
+                <span class="n">math</span><span class="o">.</span><span class="n">asin</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sin</span><span class="p">((</span><span class="n">PI</span> <span class="o">/</span> <span class="mf">180.</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_div_count</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Grid views are not supported for </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">())</span>
+            <span class="k">return</span> <span class="p">[</span><span class="bp">self</span><span class="p">]</span>
+
+        <span class="c1"># create a set of new views</span>
+        <span class="k">for</span> <span class="n">view_count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">_views</span><span class="p">)):</span>
+            <span class="c1"># calculate view shift and view lift</span>
+            <span class="k">if</span> <span class="n">x_div_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">_vs</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_vs</span> <span class="o">=</span> <span class="p">(((</span><span class="n">view_count</span> <span class="o">%</span> <span class="n">x_div_count</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x_div_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> \
+                    <span class="o">*</span> <span class="p">(</span><span class="n">x_div_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">y_div_count</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">_vl</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">_vl</span> <span class="o">=</span> <span class="p">((</span><span class="nb">int</span><span class="p">(</span><span class="n">view_count</span> <span class="o">/</span> <span class="n">y_div_count</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">y_div_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span> \
+                    <span class="o">*</span> <span class="p">(</span><span class="n">y_div_count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># create a copy from the current copy</span>
+            <span class="n">_n_view</span> <span class="o">=</span> <span class="n">View</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%s</span><span class="s1">_</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">view_count</span><span class="p">))</span>
+
+            <span class="c1"># update parameters</span>
+            <span class="n">_n_view</span><span class="o">.</span><span class="n">h_size</span> <span class="o">=</span> <span class="n">_vh</span>
+            <span class="n">_n_view</span><span class="o">.</span><span class="n">v_size</span> <span class="o">=</span> <span class="n">_vv</span>
+            <span class="n">_n_view</span><span class="o">.</span><span class="n">shift</span> <span class="o">=</span> <span class="n">_vs</span>
+            <span class="n">_n_view</span><span class="o">.</span><span class="n">lift</span> <span class="o">=</span> <span class="n">_vl</span>
+
+            <span class="c1"># add the new view to views list</span>
+            <span class="n">_views</span><span class="p">[</span><span class="n">view_count</span><span class="p">]</span> <span class="o">=</span> <span class="n">_n_view</span>
+
+        <span class="k">return</span> <span class="n">_views</span></div>
+
+<div class="viewcode-block" id="View.to_radiance"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.to_radiance">[docs]</a>    <span class="k">def</span> <span class="nf">to_radiance</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return full Radiance definition as a string.&quot;&quot;&quot;</span>
+        <span class="c1"># create base information of view</span>
+        <span class="n">view_options</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vp</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vd</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vu</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vh</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vv</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vl</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">vo</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">va</span>
+        <span class="p">))</span>
+
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">view_options</span><span class="o">.</span><span class="n">split</span><span class="p">())</span>  <span class="c1"># remove white spaces</span></div>
+
+<div class="viewcode-block" id="View.to_dict"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.to_dict">[docs]</a>    <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Translate view to a dictionary.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;direction&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;up_vector&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+            <span class="s1">&#39;h_size&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">h_size</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;v_size&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_size</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+            <span class="s1">&#39;shift&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">shift</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;lift&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">lift</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> 
+            <span class="s1">&#39;fore_clip&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">fore_clip</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="s1">&#39;aft_clip&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">aft_clip</span><span class="o">.</span><span class="n">value</span>
+        <span class="p">}</span></div>
+
+<div class="viewcode-block" id="View.to_file"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.to_file">[docs]</a>    <span class="k">def</span> <span class="nf">to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">folder</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mkdir</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Save view to a file.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            folder: Target folder.</span>
+<span class="sd">            file_name: Optional file name without extension (Default: self.name).</span>
+<span class="sd">            mkdir: A boolean to indicate if the folder should be created in case it</span>
+<span class="sd">                doesn&#39;t exist already (Default: False). </span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Full path to newly created file.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">name</span> <span class="o">=</span> <span class="n">file_name</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s1">&#39;.vf&#39;</span>
+        <span class="c1"># add rvu before the view itself</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="s1">&#39;rvu &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">futil</span><span class="o">.</span><span class="n">write_to_file_by_name</span><span class="p">(</span><span class="n">folder</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">mkdir</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="View.move"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.move">[docs]</a>    <span class="k">def</span> <span class="nf">move</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vector</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Move view.&quot;&quot;&quot;</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Point3D</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">position</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">pv</span><span class="o">.</span><span class="n">Vector3D</span><span class="p">(</span><span class="o">*</span><span class="n">vector</span><span class="p">)))</span></div>
+
+<div class="viewcode-block" id="View.rotate"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.rotate">[docs]</a>    <span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Rotate view around an axis.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            angle: Rotation angle in radians.</span>
+<span class="sd">            axis: Rotation axis as a Vector3D (Default: self.up_vector).</span>
+<span class="sd">            position: Rotation position point as a Point3D (Default: self.position)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">view_up_vector</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Vector3D</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span><span class="p">)</span>
+        <span class="n">view_position</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Point3D</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+        <span class="n">view_direction</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Vector3D</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">)</span>
+        <span class="n">view_plane</span> <span class="o">=</span> <span class="n">plane</span><span class="o">.</span><span class="n">Plane</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">view_up_vector</span><span class="p">,</span> <span class="n">o</span><span class="o">=</span><span class="n">view_position</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">view_direction</span><span class="p">)</span>
+        <span class="n">axis</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Vector3D</span><span class="p">(</span><span class="o">*</span><span class="n">axis</span><span class="p">)</span> <span class="ow">or</span> <span class="n">view_up_vector</span>
+        <span class="n">position</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Point3D</span><span class="p">(</span><span class="o">*</span><span class="n">position</span><span class="p">)</span> <span class="ow">or</span> <span class="n">view_position</span>
+        
+        <span class="n">rotated_plane</span> <span class="o">=</span> <span class="n">view_plane</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">angle</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">rotated_plane</span><span class="o">.</span><span class="n">o</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">rotated_plane</span><span class="o">.</span><span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">up_vector</span> <span class="o">=</span> <span class="n">rotated_plane</span><span class="o">.</span><span class="n">n</span></div>
+
+<div class="viewcode-block" id="View.ToString"><a class="viewcode-back" href="../../honeybee_radiance.view.html#honeybee_radiance.view.View.ToString">[docs]</a>    <span class="k">def</span> <span class="nf">ToString</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Overwrite .NET ToString.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__repr__</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;View representation.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_radiance</span><span class="p">()</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2019, Ladybug Tools.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.8.5.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

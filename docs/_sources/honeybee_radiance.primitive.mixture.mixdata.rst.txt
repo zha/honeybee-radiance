@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.mixture.mixdata module
+===================================================
+
+.. automodule:: honeybee_radiance.primitive.mixture.mixdata
+    :members:
+    :undoc-members:
+    :show-inheritance:

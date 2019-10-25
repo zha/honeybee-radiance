@@ -1,0 +1,29 @@
+honeybee\_radiance.primitive package
+====================================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    honeybee_radiance.primitive.geometry
+    honeybee_radiance.primitive.material
+    honeybee_radiance.primitive.mixture
+    honeybee_radiance.primitive.pattern
+    honeybee_radiance.primitive.texture
+
+Submodules
+----------
+
+.. toctree::
+
+   honeybee_radiance.primitive.primitivebase
+   honeybee_radiance.primitive.putil
+
+Module contents
+---------------
+
+.. automodule:: honeybee_radiance.primitive
+    :members:
+    :undoc-members:
+    :show-inheritance:

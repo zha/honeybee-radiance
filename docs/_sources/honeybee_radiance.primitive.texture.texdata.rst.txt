@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.texture.texdata module
+===================================================
+
+.. automodule:: honeybee_radiance.primitive.texture.texdata
+    :members:
+    :undoc-members:
+    :show-inheritance:

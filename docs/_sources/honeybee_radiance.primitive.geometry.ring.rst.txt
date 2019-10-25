@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.geometry.ring module
+=================================================
+
+.. automodule:: honeybee_radiance.primitive.geometry.ring
+    :members:
+    :undoc-members:
+    :show-inheritance:

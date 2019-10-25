@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.geometry.cylinder module
+=====================================================
+
+.. automodule:: honeybee_radiance.primitive.geometry.cylinder
+    :members:
+    :undoc-members:
+    :show-inheritance:

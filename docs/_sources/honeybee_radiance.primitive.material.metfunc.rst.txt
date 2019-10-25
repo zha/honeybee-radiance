@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.metfunc module
+====================================================
+
+.. automodule:: honeybee_radiance.primitive.material.metfunc
+    :members:
+    :undoc-members:
+    :show-inheritance:

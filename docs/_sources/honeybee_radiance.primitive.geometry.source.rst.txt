@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.geometry.source module
+===================================================
+
+.. automodule:: honeybee_radiance.primitive.geometry.source
+    :members:
+    :undoc-members:
+    :show-inheritance:

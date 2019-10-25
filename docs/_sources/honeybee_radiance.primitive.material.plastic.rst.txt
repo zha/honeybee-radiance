@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.plastic module
+====================================================
+
+.. automodule:: honeybee_radiance.primitive.material.plastic
+    :members:
+    :undoc-members:
+    :show-inheritance:

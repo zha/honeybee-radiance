@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.brtdfunc module
+=====================================================
+
+.. automodule:: honeybee_radiance.primitive.material.brtdfunc
+    :members:
+    :undoc-members:
+    :show-inheritance:

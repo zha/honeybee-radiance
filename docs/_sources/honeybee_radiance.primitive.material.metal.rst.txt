@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.metal module
+==================================================
+
+.. automodule:: honeybee_radiance.primitive.material.metal
+    :members:
+    :undoc-members:
+    :show-inheritance:

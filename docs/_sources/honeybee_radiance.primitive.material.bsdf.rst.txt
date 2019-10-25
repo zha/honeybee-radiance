@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.material.bsdf module
+=================================================
+
+.. automodule:: honeybee_radiance.primitive.material.bsdf
+    :members:
+    :undoc-members:
+    :show-inheritance:

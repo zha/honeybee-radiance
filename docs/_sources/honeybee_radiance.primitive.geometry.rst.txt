@@ -1,0 +1,28 @@
+honeybee\_radiance.primitive.geometry package
+=============================================
+
+Submodules
+----------
+
+.. toctree::
+
+   honeybee_radiance.primitive.geometry.bubble
+   honeybee_radiance.primitive.geometry.cone
+   honeybee_radiance.primitive.geometry.cup
+   honeybee_radiance.primitive.geometry.cylinder
+   honeybee_radiance.primitive.geometry.geometrybase
+   honeybee_radiance.primitive.geometry.instance
+   honeybee_radiance.primitive.geometry.mesh
+   honeybee_radiance.primitive.geometry.polygon
+   honeybee_radiance.primitive.geometry.ring
+   honeybee_radiance.primitive.geometry.source
+   honeybee_radiance.primitive.geometry.sphere
+   honeybee_radiance.primitive.geometry.tube
+
+Module contents
+---------------
+
+.. automodule:: honeybee_radiance.primitive.geometry
+    :members:
+    :undoc-members:
+    :show-inheritance:

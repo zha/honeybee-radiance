@@ -1,0 +1,24 @@
+honeybee\_radiance.primitive.pattern package
+============================================
+
+Submodules
+----------
+
+.. toctree::
+
+   honeybee_radiance.primitive.pattern.brightdata
+   honeybee_radiance.primitive.pattern.brightfunc
+   honeybee_radiance.primitive.pattern.brighttext
+   honeybee_radiance.primitive.pattern.colordata
+   honeybee_radiance.primitive.pattern.colorfunc
+   honeybee_radiance.primitive.pattern.colorpict
+   honeybee_radiance.primitive.pattern.colortext
+   honeybee_radiance.primitive.pattern.patternbase
+
+Module contents
+---------------
+
+.. automodule:: honeybee_radiance.primitive.pattern
+    :members:
+    :undoc-members:
+    :show-inheritance:

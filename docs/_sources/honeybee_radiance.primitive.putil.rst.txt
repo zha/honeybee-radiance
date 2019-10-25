@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.putil module
+=========================================
+
+.. automodule:: honeybee_radiance.primitive.putil
+    :members:
+    :undoc-members:
+    :show-inheritance:

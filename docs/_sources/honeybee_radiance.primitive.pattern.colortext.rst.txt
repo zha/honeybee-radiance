@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.pattern.colortext module
+=====================================================
+
+.. automodule:: honeybee_radiance.primitive.pattern.colortext
+    :members:
+    :undoc-members:
+    :show-inheritance:

@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.geometry.tube module
+=================================================
+
+.. automodule:: honeybee_radiance.primitive.geometry.tube
+    :members:
+    :undoc-members:
+    :show-inheritance:

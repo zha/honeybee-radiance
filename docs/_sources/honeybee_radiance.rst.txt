@@ -1,0 +1,33 @@
+honeybee\_radiance package
+==========================
+
+Subpackages
+-----------
+
+.. toctree::
+
+    honeybee_radiance.cli
+    honeybee_radiance.lib
+    honeybee_radiance.lightsource
+    honeybee_radiance.primitive
+
+Submodules
+----------
+
+.. toctree::
+
+   honeybee_radiance.modifierset
+   honeybee_radiance.parser
+   honeybee_radiance.properties
+   honeybee_radiance.sensor
+   honeybee_radiance.sensorgrid
+   honeybee_radiance.view
+   honeybee_radiance.writer
+
+Module contents
+---------------
+
+.. automodule:: honeybee_radiance
+    :members:
+    :undoc-members:
+    :show-inheritance:

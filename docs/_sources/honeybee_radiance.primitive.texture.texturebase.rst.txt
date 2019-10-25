@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.texture.texturebase module
+=======================================================
+
+.. automodule:: honeybee_radiance.primitive.texture.texturebase
+    :members:
+    :undoc-members:
+    :show-inheritance:

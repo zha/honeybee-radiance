@@ -1,0 +1,7 @@
+honeybee\_radiance.primitive.geometry.polygon module
+====================================================
+
+.. automodule:: honeybee_radiance.primitive.geometry.polygon
+    :members:
+    :undoc-members:
+    :show-inheritance:

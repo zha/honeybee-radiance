@@ -1,0 +1,19 @@
+honeybee\_radiance.primitive.texture package
+============================================
+
+Submodules
+----------
+
+.. toctree::
+
+   honeybee_radiance.primitive.texture.texdata
+   honeybee_radiance.primitive.texture.texfunc
+   honeybee_radiance.primitive.texture.texturebase
+
+Module contents
+---------------
+
+.. automodule:: honeybee_radiance.primitive.texture
+    :members:
+    :undoc-members:
+    :show-inheritance:
