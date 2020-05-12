@@ -1,5 +1,5 @@
 {
     "__comment__": "Add full paths to folders (eg. C:/Radiance/bin).",
-    "radiance_path": "",
+    "radiance_path": "C:/Radiance",
     "standards_data_folder": ""
 }
