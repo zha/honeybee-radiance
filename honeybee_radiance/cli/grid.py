@@ -4,7 +4,7 @@ try:
     import click
 except ImportError:
     raise ImportError(
-        'click is not installed. Try `pip install . [cli]` command.'
+        'click is not installed. Try `pip install honeybee-radiance[cli]` command.'
     )
 
 import sys
@@ -23,9 +23,11 @@ def grid():
 
 
 @grid.command('split')
-@click.argument('grid-file')
+@click.argument('grid-file', type=click.Path(
+    exists=True, file_okay=True, dir_okay=False, resolve_path=True))
 @click.argument('count', type=int)
-@click.option('--folder', help='Output folder.', default='.', show_default=True)
+@click.option('--folder', help='Output folder.', default='.', show_default=True,
+              type=click.Path(file_okay=False, dir_okay=True, resolve_path=True))
 @click.option('--log-file', help='Optional log file to output the name of the newly'
               ' created grids. By default the list will be printed out to stdout',
               type=click.File('w'), default='-')
@@ -42,7 +44,7 @@ def split_grid(grid_file, count, folder, log_file):
     """
     try:
         grid = sensorgrid.SensorGrid.from_file(grid_file)
-        file_count = int(round(grid.count / count))
+        file_count = max(1, int(round(grid.count / count)))
         files = grid.to_files(folder, file_count, mkdir=True)
 
         log_file.write(json.dumps(files))
@@ -54,13 +56,15 @@ def split_grid(grid_file, count, folder, log_file):
 
 
 @grid.command('merge')
-@click.argument('input-folder')
-@click.argument('base-name')
-@click.argument('extension', default='.pts')
+@click.argument('input-folder', type=click.Path(
+    file_okay=False, dir_okay=True, resolve_path=True))
+@click.argument('base-name', type=str)
+@click.argument('extension', default='.pts', type=str)
 @click.option('--folder', help='Optional output folder.', default='.', show_default=True)
 def merge_grid(input_folder, base_name, extension, folder):
-    """Merge several radiance grid files into a single file.
+    """Merge several radiance files into a single file.
 
+    This command removes headers from file if it exist.
     \b
     Args:
         input_folder: Input folder.
@@ -81,9 +85,18 @@ def merge_grid(input_folder, base_name, extension, folder):
         with open(output_file, 'w') as outf:
             for f in grids:
                 with open(os.path.join(input_folder, f)) as inf:
-                    for line in inf:
-                        if not line.strip():
+                    first_line = next(inf)
+                    if first_line[:10] == '#?RADIANCE':
+                        for line in inf:
+                            if line[:7] == 'FORMAT=':
+                                # pass next empty line
+                                next(inf)
+                                break
                             continue
+                    else:
+                        outf.write(first_line)
+                    # add rest of the file to outfile
+                    for line in inf:
                         outf.write(line)
     except Exception:
         _logger.exception('Failed to merge grid files.')

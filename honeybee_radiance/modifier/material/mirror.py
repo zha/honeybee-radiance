@@ -5,7 +5,10 @@ http://radsite.lbl.gov/radiance/refer/ray.html#Mirror
 from __future__ import division
 from .materialbase import Material
 import honeybee.typing as typing
-from ...primitive import Void, VOID
+from ...primitive import Void
+
+
+VOID = Void()
 
 
 class Mirror(Material):
@@ -19,8 +22,9 @@ class Mirror(Material):
 
     An optional string argument may be used like the illum type to specify a different
     material to be used for shading non-source rays. If this alternate material is given
-    as 'void', then the mirror surface will be invisible. This is only appropriate if
-    the surface hides other (more detailed) geometry with the same overall reflectance. 
+    as "void", then the mirror surface will be invisible. Using "void" is only
+    appropriate if the surface hides other (more detailed) geometry with the same
+    overall reflectance. 
 
     Args:
         identifier: Text string for a unique Material ID. Must not contain spaces
@@ -34,9 +38,10 @@ class Mirror(Material):
             (Default: 1).
         modifier: Material modifier (Default: None).
         alternate_material: An optional material may be used like the illum type to
-            specify a different material to be used for shading non-source rays. If this
-            alternate material is given as "void", then the mirror surface will be
-            invisible. This is only appropriate if the surface hides other (more
+            specify a different material to be used for shading non-source rays.
+            If None, this will keep the alternat_material as mirror. If this alternate
+            material is given as "void", then the mirror surface will be invisible.
+            Using "void" is only appropriate if the surface hides other (more
             detailed) geometry with the same overall reflectance (Default: None).
         dependencies: A list of primitives that this primitive depends on. This
             argument is only useful for defining advanced primitives where the
@@ -129,13 +134,12 @@ class Mirror(Material):
 
     @property
     def alternate_material(self):
-        """Alternate material.
+        """Get or set an optional material for shading non-source rays.
 
-        An optional material may be used like the illum type to specify a different
-        material to be used for shading non-source rays. If this alternate material is
-        given as "void", then the mirror surface will be invisible. This is only
-        appropriate if the surface hides other (more detailed) geometry with the same
-        overall reflectance (Default: None).
+        If None, this will keep the alternat_material as mirror. If this alternate
+        material is given as "void", then the mirror surface will be invisible.
+        Using "void" is only appropriate if the surface hides other (more
+        detailed) geometry with the same overall reflectance.
         """
         return self._alternate_material
 
@@ -171,9 +175,10 @@ class Mirror(Material):
                 between 0 and 1 (Default: 0).
             modifier: Material modifier (Default: None).
             alternate_material: An optional material may be used like the illum type to
-                specify a different material to be used for shading non-source rays. If
-                this alternate material is given as "void", then the mirror surface will
-                be invisible. This is only appropriate if the surface hides other (more
+                specify a different material to be used for shading non-source rays.
+                If None, this will keep the alternat_material as mirror. If this alternate
+                material is given as "void", then the mirror surface will be invisible.
+                Using "void" is only appropriate if the surface hides other (more
                 detailed) geometry with the same overall reflectance (Default: None).
             dependencies: A list of primitives that this primitive depends on. This
                 argument is only useful for defining advanced primitives where the
@@ -275,7 +280,7 @@ class Mirror(Material):
             "r_reflectance": float,  # Reflectance for red
             "g_reflectance": float,  # Reflectance for green
             "b_reflectance": float,  # Reflectance for blue
-            "modifier": {} or void,  # Material modifier
+            "modifier": {},  # Material modifier (Default: None)
             "alternate_material": {},  # optional alternate material
             "dependencies": []
             }

@@ -11,10 +11,13 @@ Usage:
     folders.radiance_path = "C:/Radiance/bin"
 """
 import ladybug.config as lb_config
+import honeybee_standards
 
 import os
 import platform
+import subprocess
 import json
+import re
 
 
 class Folders(object):
@@ -32,9 +35,13 @@ class Folders(object):
         * radiance_path
         * radbin_path
         * radlib_path
+        * radiance_version
+        * radiance_version_str
+        * radiance_version_date
         * standards_data_folder
         * modifier_lib
         * modifierset_lib
+        * defaults_file
         * config_file
         * mute
     """
@@ -75,6 +82,9 @@ class Folders(object):
         else:
             self._radiance_path = None
             self._radlib_path = None
+        self._radiance_version = None
+        self._radiance_version_str = None
+        self._radiance_version_date = None
 
     @property
     def radbin_path(self):
@@ -89,6 +99,39 @@ class Folders(object):
     def radlib_path(self):
         """Get the path to Radiance lib folder."""
         return self._radlib_path
+
+    @property
+    def radiance_version(self):
+        """Get a tuple for the version of radiance (eg. (5, 3, '012cb17835')).
+
+        This will be None if the version could not be sensed or if no Radiance
+        installation was found.
+        """
+        if self._radbin_path and self._radiance_version_str is None:
+            self._radiance_version_from_cli()
+        return self._radiance_version
+
+    @property
+    def radiance_version_str(self):
+        """Get text for the full version of radiance (eg."RADIANCE 5.3 official release").
+
+        This will be None if the version could not be sensed or if no Radiance
+        installation was found.
+        """
+        if self._radbin_path and self._radiance_version_str is None:
+            self._radiance_version_from_cli()
+        return self._radiance_version_str
+
+    @property
+    def radiance_version_date(self):
+        """Get a tuple for the date of the radiance version (eg. (2020, 9, 3)).
+
+        This will be None if the version could not be sensed or if no Radiance
+        installation was found.
+        """
+        if self._radbin_path and self._radiance_version_str is None:
+            self._radiance_version_from_cli()
+        return self._radiance_version_date
 
     @property
     def standards_data_folder(self):
@@ -106,15 +149,8 @@ class Folders(object):
             path = self._find_standards_data_folder()
 
         # gather all of the sub folders underneath the master folder
-        self._modifier_lib = os.path.join(path, 'modifiers') if path else None
-        self._modifierset_lib = os.path.join(path, 'modifiersets') if path else None
-
-        # check that the library's sub-folders exist
-        if path:
-            assert os.path.isdir(self._modifier_lib), \
-                '{} lacks a "modifiers" folder.'.format(path)
-            assert os.path.isdir(self._modifierset_lib), \
-                '{} lacks a "modifiersets" folder.'.format(path)
+        self._modifier_lib, self._modifierset_lib, self._defaults_file = \
+            self._check_standards_folder(path)
 
         # set the standards_data_folder
         self._standards_data_folder = path
@@ -133,6 +169,11 @@ class Folders(object):
         return self._modifierset_lib
 
     @property
+    def defaults_file(self):
+        """Get the path to the JSON file where honeybee's defaults are loaded from."""
+        return self._defaults_file
+
+    @property
     def config_file(self):
         """Get or set the path to the config.json file from which folders are loaded.
 
@@ -147,6 +188,16 @@ class Folders(object):
             cfg = os.path.join(os.path.dirname(__file__), 'config.json')
         self._load_from_file(cfg)
         self._config_file = cfg
+
+    @property
+    def env(self):
+        "Return Radiance environment as a dictionary."
+        env = {}
+        if self.radbin_path:
+            env['PATH'] = self.radbin_path.replace('\\', '/')
+        if self.radlib_path:
+            env['RAYPATH'] = self.radlib_path.replace('\\', '/')
+        return env
 
     def _load_from_file(self, file_path):
         """Set all of the the properties of this object from a config JSON file.
@@ -181,7 +232,35 @@ class Folders(object):
         # set path for the standards_data_folder
         self.standards_data_folder = default_path["standards_data_folder"]
 
-    def _find_radiance_folder(self):
+    def _radiance_version_from_cli(self):
+        """Get the Radiance version properties by making a call to a Radiance command."""
+        rad_exe = os.path.join(self.radbin_path, 'rtrace.exe') if os.name == 'nt' \
+            else os.path.join(self.radbin_path, 'rtrace')
+        cmds = [rad_exe, '-version']
+        use_shell = True if os.name == 'nt' else False
+        process = subprocess.Popen(cmds, stdout=subprocess.PIPE, shell=use_shell)
+        stdout = process.communicate()
+        base_str = str(stdout[0]).replace("b'", '').replace(r"\r\n'", '')
+        self._radiance_version_str = base_str  # set the version string
+        try:  # try to parse the version into a list of integers
+            ver_nums = base_str.split('(')[-1].split(')')[0].split('.')
+            ver_array = []
+            for i in ver_nums:
+                val = int(i) if i.isnumeric() else i
+                ver_array.append(val)
+            self._radiance_version = tuple(ver_array)
+        except Exception:
+            pass  # failed to parse the version into values; possibly a custom build
+        try:  # try to parse the date into a list of integers
+            date_pattern = re.compile(r'(\d*\-\d*\-\d*)')
+            ver_date = re.search(date_pattern, base_str)
+            self._radiance_version_date = \
+                tuple(int(v) for v in ver_date.group(0).split('-'))
+        except Exception:
+            pass  # failed to parse the date into values; possibly a custom build
+
+    @staticmethod
+    def _find_radiance_folder():
         """Find the Radiance installation in its default location.
 
         This method will first attempt to return the path of a standalone Radiance
@@ -205,23 +284,15 @@ class Folders(object):
         elif os.name == 'nt':  # search the C:/ drive on Windows
             test_path = 'C:\\Radiance'
             rad_path = test_path if os.path.isdir(test_path) else None
-        elif platform.system() == 'Darwin':  # search the Applications folder on Mac
-            test_path = '/Applications/radiance'
+        elif platform.system() == 'Darwin':  # search usr/local and Applications on Mac
+            test_path = '/usr/local/radiance'
             rad_path = test_path if os.path.isdir(test_path) else None
+            if rad_path is None:
+                test_path = '/Applications/radiance'
+                rad_path = test_path if os.path.isdir(test_path) else None
         elif platform.system() == 'Linux':  # search the usr/local folder
             test_path = '/usr/local/radiance'
             rad_path = test_path if os.path.isdir(test_path) else None
-
-        # lastly, check if honeybee_energy is installed and get Radiance with OpenStudio
-        if not rad_path:
-            try:
-                import honeybee_energy.config as hbe_config
-                os_path = hbe_config.folders.openstudio_path
-                if os_path:
-                    test_path = os.path.join(os.path.split(os_path)[0], 'Radiance')
-                    rad_path = test_path if os.path.isdir(test_path) else None
-            except ImportError:
-                pass  # no honeybee_energy installation found
 
         if not rad_path:  # No Radiance installations were found
             return None
@@ -248,7 +319,27 @@ class Folders(object):
                 return lib_folder
 
         # default to the library folder that installs with this Python package
-        return os.path.join(os.path.dirname(__file__), 'lib', 'data')
+        return os.path.join(os.path.dirname(honeybee_standards.__file__))
+
+    @staticmethod
+    def _check_standards_folder(path):
+        """Check that a standards data sub-folders exist."""
+        if not path:  # first check that a path exists
+            return [None] * 3
+
+        # gather all of the sub folders underneath the master folder
+        _modifier_lib = os.path.join(path, 'modifiers') if path else None
+        _modifierset_lib = os.path.join(path, 'modifiersets') if path else None
+        _radiance_default = os.path.join(path, 'radiance_default.json')
+
+        assert os.path.isdir(_modifier_lib), \
+            '{} lacks a "modifiers" folder.'.format(path)
+        assert os.path.isdir(_modifierset_lib), \
+            '{} lacks a "modifiersets" folder.'.format(path)
+        assert os.path.isfile(_radiance_default), \
+            '{} lacks a "radiance_default.json."'.format(path)
+
+        return _modifier_lib, _modifierset_lib, _radiance_default
 
 
 """Object possesing all key folders within the configuration."""

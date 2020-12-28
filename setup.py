@@ -6,6 +6,9 @@ with open("README.md", "r") as fh:
 with open('requirements.txt') as f:
     requirements = f.read().splitlines()
 
+with open('cli-requirements.txt') as f:
+    cli_requirements = f.read().splitlines()
+
 setuptools.setup(
     name="honeybee-radiance",
     use_scm_version=True,
@@ -16,12 +19,10 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ladybug-tools/honeybee-radiance",
-    packages=setuptools.find_packages(exclude=["tests"]),
+    packages=setuptools.find_packages(exclude=["tests*"]),
     include_package_data=True,
     install_requires=requirements,
-    extras_require={
-        'cli': ['click==7.1.1', 'honeybee-core[cli]==1.26.1']
-    },
+    extras_require={'cli': cli_requirements},
     entry_points={
         "console_scripts": ["honeybee-radiance = honeybee_radiance.cli:radiance"]
     },
@@ -30,7 +31,8 @@ setuptools.setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: Implementation :: CPython",
-        "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+        "License :: OSI Approved :: GNU Affero General Public License v3",
         "Operating System :: OS Independent"
     ],
+    license="AGPL-3.0"
 )

@@ -1,20 +1,22 @@
 # coding=utf-8
 """Methods to write to rad."""
-from ladybug.futil import write_to_file_by_name, preparedir, nukedir
+from ladybug.futil import write_to_file_by_name, preparedir
 from honeybee.config import folders
 from honeybee.boundarycondition import Surface
 from honeybee_radiance_folder.folder import ModelFolder
+import honeybee_radiance_folder.config as folder_config
 
 from .geometry import Polygon
 from .modifier.material import BSDF
 from .lib.modifiers import black
 
 import os
+import json
 import shutil
 
 
 def shade_to_rad(shade, blk=False, minimal=False):
-    """Generate an RAD string representation of a Shade.
+    """Generate a RAD string representation of a Shade.
 
     Note that the resulting string does not include modifier definitions. Nor
     does it include any states for dynamic geometry.
@@ -34,7 +36,7 @@ def shade_to_rad(shade, blk=False, minimal=False):
 
 
 def door_to_rad(door, blk=False, minimal=False):
-    """Generate an RAD string representation of a Door.
+    """Generate a RAD string representation of a Door.
 
     Note that the resulting string does not include modifier definitions. Nor
     does it include any states for dynamic geometry. However, it does include
@@ -58,7 +60,7 @@ def door_to_rad(door, blk=False, minimal=False):
 
 
 def aperture_to_rad(aperture, blk=False, minimal=False):
-    """Generate an RAD string representation of an Aperture.
+    """Generate a RAD string representation of an Aperture.
 
     Note that the resulting string does not include modifier definitions. Nor
     does it include any states for dynamic geometry. However, it does include
@@ -111,7 +113,7 @@ def face_to_rad(face, blk=False, minimal=False):
 
 
 def room_to_rad(room, blk=False, minimal=False):
-    """Generate an RAD string representation of a Room.
+    """Generate a RAD string representation of a Room.
 
     This method will write all geometry associated with a Room including all
     Faces, Apertures, Doors, and Shades. However, it does not include modifiers
@@ -135,7 +137,7 @@ def room_to_rad(room, blk=False, minimal=False):
 
 
 def model_to_rad(model, blk=False, minimal=False):
-    r"""Generate an RAD string representation of a Model.
+    r"""Generate a RAD string representation of a Model.
 
     The resulting strings will include all geometry (Rooms, Faces, Shades, Apertures,
     Doors) and all modifiers. However, it does not include any states for dynamic
@@ -153,7 +155,7 @@ def model_to_rad(model, blk=False, minimal=False):
             studies to understand the contribution of individual apertures.
         minimal: Boolean to note whether the radiance string should be written
             in a minimal format (with spaces instead of line breaks). Default: False.
-    
+
     Returns:
         A tuple of two strings.
 
@@ -166,6 +168,10 @@ def model_to_rad(model, blk=False, minimal=False):
     modifier_str = ['#   ============== MODIFIERS ==============\n']
     rad_prop = model.properties.radiance
     modifiers = rad_prop.blk_modifiers if blk else rad_prop.modifiers
+    if not blk:
+        # must be imported here to avoid circular imports
+        from .lib.modifiersets import generic_modifier_set_visible
+        modifiers = set(modifiers + generic_modifier_set_visible.modifiers_unique)
     for mod in modifiers:
         modifier_str.append(mod.to_radiance(minimal))
 
@@ -224,12 +230,13 @@ def model_to_rad(model, blk=False, minimal=False):
     return '\n\n'.join(model_str), '\n\n'.join(modifier_str)
 
 
-def model_to_rad_folder(model, folder=None, minimal=False):
+def model_to_rad_folder(model, folder=None, config_file=None, minimal=False):
     r"""Write a honeybee model to a rad folder.
 
-    The rad files in the resulting folders will include all geometry
-    (Rooms, Faces, Shades, Apertures, Doors), all modifiers, and all states
-    of dynamic objects.
+    The rad files in the resulting folders will include all geometry (Rooms, Faces,
+    Shades, Apertures, Doors), all modifiers, and all states of dynamic objects.
+    It also includes any SensorGrids and Views that are assigned to the model's
+    radiance properties.
 
     Args:
         model: A honeybee Model for which radiance folder will be written.
@@ -237,6 +244,9 @@ def model_to_rad_folder(model, folder=None, minimal=False):
             Radiance folder. If None, the files will be written into a sub-directory
             of the honeybee-core default_simulation_folder. This sub-directory
             is specifically: default_simulation_folder/[MODEL IDENTIFIER]/Radiance
+        config_file: An optional config file path to modify the default folder
+            names. If None, ``folder.cfg`` in ``honeybee-radiance-folder``
+            will be used. (Default: None).
         minimal: Boolean to note whether the radiance strings should be written
             in a minimal format (with spaces instead of line breaks). Default: False.
     """
@@ -244,88 +254,256 @@ def model_to_rad_folder(model, folder=None, minimal=False):
     model_id = model.identifier
     if folder is None:
         folder = os.path.join(folders.default_simulation_folder, model_id, 'Radiance')
-    if os.path.isdir(folder):
-        nukedir(folder, rmdir=True)  # delete the folder if it already exists
-    else:
+    if not os.path.isdir(folder):
         preparedir(folder)  # create the directory if it's not there
-    model_folder = ModelFolder(folder)
-    model_folder.write()
+    model_folder = ModelFolder(folder, 'model', config_file)
+    model_folder.write(folder_type=-1, cfg=folder_config.minimal, overwrite=True)
 
-    # gather static apertures
-    exterior_aps, exterior_aps_blk, interior_aps, interior_aps_blk = \
-        model.properties.radiance.subfaces_by_interior_exterior()
+    # gather and write static apertures to the folder
+    aps, aps_blk = model.properties.radiance.subfaces_by_blk()
+    mods, mods_blk, mod_combs, mod_names = _collect_modifiers(aps, aps_blk, True)
+    _write_static_files(
+        folder, model_folder.aperture_folder(full=True), 'aperture',
+        aps, aps_blk, mods, mods_blk, mod_combs, mod_names, False, minimal)
 
-    # write exterior static apertures
-    ext_mods, ext_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(exterior_aps, exterior_aps_blk, True)
-    _write_static_files(folder, model_folder.STATIC_APERTURE_EXTERIOR, model_id,
-                        exterior_aps, exterior_aps_blk, ext_mods, ext_mods_blk,
-                        mod_combs, mod_names, False, minimal)
+    # gather and write static faces
+    faces, faces_blk = model.properties.radiance.faces_by_blk()
+    f_mods, f_mods_blk, mod_combs, mod_names = _collect_modifiers(faces, faces_blk)
+    _write_static_files(
+        folder, model_folder.scene_folder(full=True), 'envelope',
+        faces, faces_blk, f_mods, f_mods_blk, mod_combs, mod_names, True, minimal)
 
-    # write interior static apertures
-    int_mods, int_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(interior_aps, interior_aps_blk, True)
-    _write_static_files(folder, model_folder.STATIC_APERTURE_INTERIOR, model_id,
-                        interior_aps, interior_aps_blk, int_mods, int_mods_blk,
-                        mod_combs, mod_names, False, minimal)
+    # gather and write static shades
+    shades, shades_blk = model.properties.radiance.shades_by_blk()
+    s_mods, s_mods_blk, mod_combs, mod_names = _collect_modifiers(shades, shades_blk)
+    _write_static_files(
+        folder, model_folder.scene_folder(full=True), 'shades',
+        shades, shades_blk, s_mods, s_mods_blk, mod_combs, mod_names, False, minimal)
 
-    # gather static faces
-    opaque_faces, opaque_faces_blk, nonopaque_faces, nonopaque_faces_blk = \
-        model.properties.radiance.faces_by_opaque()
+    # write dynamic sub-face groups (apertures and doors)
+    ext_dict = {}
+    out_subfolder = model_folder.aperture_group_folder(full=True)
+    dyn_subface = model.properties.radiance.dynamic_subface_groups
+    if len(dyn_subface) != 0:
+        preparedir(out_subfolder)
+        for group in dyn_subface:
+            if group.is_indoor:
+                # TODO: Implement dynamic interior apertures once the radiance folder
+                # structure is clear about how the "light path" should be input
+                raise NotImplementedError('Dynamic interior apertures are not currently'
+                                          ' supported by Model.to.rad_folder.')
+            else:
+                st_d = _write_dynamic_subface_files(folder, out_subfolder, group, minimal)
+                _write_mtx_files(folder, out_subfolder, group, st_d, minimal)
+                ext_dict[group.identifier] = st_d
+        _write_dynamic_json(folder, out_subfolder, ext_dict)
 
-    # write opaque static faces
-    of_mods, of_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(opaque_faces, opaque_faces_blk, True)
-    _write_static_files(folder, model_folder.STATIC_OPAQUE_ROOT, model_id,
-                        opaque_faces, opaque_faces_blk, of_mods, of_mods_blk,
-                        mod_combs, mod_names, True, minimal)
-    
-    # write nonopaque static faces
-    nof_mods, nof_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(nonopaque_faces, nonopaque_faces_blk, False)
-    _write_static_files(folder, model_folder.STATIC_NONOPAQUE_ROOT, model_id,
-                        nonopaque_faces, nonopaque_faces_blk, nof_mods, nof_mods_blk,
-                        mod_combs, mod_names, True, minimal)
+    # write dynamic shade groups
+    out_dict = {}
+    in_dict = {}
+    out_subfolder = model_folder.dynamic_scene_folder(full=True, indoor=False)
+    in_subfolder = model_folder.dynamic_scene_folder(full=True, indoor=True)
+    dyn_shade = model.properties.radiance.dynamic_shade_groups
+    if len(dyn_shade) != 0:
+        preparedir(out_subfolder)
+        indoor_created = False
+        for group in dyn_shade:
+            if group.is_indoor:
+                if not indoor_created:
+                    preparedir(in_subfolder)
+                    indoor_created = True
+                st_d = _write_dynamic_shade_files(folder, in_subfolder, group, minimal)
+                in_dict[group.identifier] = st_d
+            else:
+                st_d = _write_dynamic_shade_files(folder, out_subfolder, group, minimal)
+                out_dict[group.identifier] = st_d
+        _write_dynamic_json(folder, out_subfolder, out_dict)
+        if indoor_created:
+            _write_dynamic_json(folder, in_subfolder, in_dict)
 
-    # gather static indoor shades
-    opaque_shades, opaque_shades_blk, nonopaque_shades, nonopaque_shades_blk = \
-        model.properties.radiance.indoor_shades_by_opaque()
+    # copy all bsdfs into the bsdf folder
+    bsdf_folder = model_folder.bsdf_folder(full=True)
+    bsdf_mods = model.properties.radiance.bsdf_modifiers
+    if len(bsdf_mods) != 0:
+        preparedir(bsdf_folder)
+        for bdf_mod in bsdf_mods:
+            bsdf_name = os.path.split(bdf_mod.bsdf_file)[-1]
+            new_bsdf_path = os.path.join(bsdf_folder, bsdf_name)
+            shutil.copy(bdf_mod.bsdf_file, new_bsdf_path)
 
-    # write opaque static indoor shades
-    os_mods, os_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(opaque_shades, opaque_shades_blk, True)
-    _write_static_files(folder, model_folder.STATIC_OPAQUE_INDOOR, model_id,
-                        opaque_shades, opaque_shades_blk, os_mods, os_mods_blk,
-                        mod_combs, mod_names, False, minimal)
-    
-    # write nonopaque static indoor shades
-    nos_mods, nos_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(nonopaque_shades, nonopaque_shades_blk, False)
-    _write_static_files(folder, model_folder.STATIC_NONOPAQUE_INDOOR, model_id,
-                        nonopaque_shades, nonopaque_shades_blk, nos_mods, nos_mods_blk,
-                        mod_combs, mod_names, False, minimal)
+    # write the assigned sensor grids and views into the correct folder
+    grid_dir = model_folder.grid_folder(full=True)
+    grids = model.properties.radiance.sensor_grids
+    if len(grids) != 0:
+        grids_info = []
+        preparedir(grid_dir)
+        model.properties.radiance.check_duplicate_sensor_grid_display_names()
+        for grid in grids:
+            grid.to_file(grid_dir)
+            info_file = os.path.join(grid_dir, '{}.json'.format(grid.display_name))
+            with open(info_file, 'w') as fp:
+                json.dump(grid.info_dict(model), fp, indent=4)
 
-    # gather static outdoor shades
-    opaque_shades, opaque_shades_blk, nonopaque_shades, nonopaque_shades_blk = \
-        model.properties.radiance.outdoor_shades_by_opaque()
+            grid_info = {
+                'name': grid.display_name, 'count': grid.count
+            }
+            grids_info.append(grid_info)
 
-    # write opaque static outdoor shades
-    os_mods, os_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(opaque_shades, opaque_shades_blk, True)
-    _write_static_files(folder, model_folder.STATIC_OPAQUE_OUTDOOR, model_id,
-                        opaque_shades, opaque_shades_blk, os_mods, os_mods_blk,
-                        mod_combs, mod_names, False, minimal)
+        # write information file for all the grids.
+        grids_info_file = os.path.join(grid_dir, '_info.json')
+        with open(grids_info_file, 'w') as fp:
+            json.dump(grids_info, fp, indent=2)
 
-    # write nonopaque static outdoor shades
-    nos_mods, nos_mods_blk, mod_combs, mod_names = \
-        _collect_modifiers(nonopaque_shades, nonopaque_shades_blk, False)
-    _write_static_files(folder, model_folder.STATIC_NONOPAQUE_OUTDOOR, model_id,
-                        nonopaque_shades, nonopaque_shades_blk, nos_mods, nos_mods_blk,
-                        mod_combs, mod_names, False, minimal)
+    view_dir = model_folder.view_folder(full=True)
+    views = model.properties.radiance.views
+    if len(views) != 0:
+        views_info = []
+        preparedir(view_dir)
+        model.properties.radiance.check_duplicate_view_display_names()
+        for view in views:
+            view.to_file(view_dir)
+            info_file = os.path.join(view_dir, '{}.json'.format(view.display_name))
+            with open(info_file, 'w') as fp:
+                json.dump(view.info_dict(model), fp, indent=4)
+
+            # TODO: see if it make sense to use to_dict here instead of only taking the
+            # name
+            view_info = {
+                'name': view.display_name
+            }
+            views_info.append(view_info)
+
+        # write information file for all the views.
+        views_info_file = os.path.join(view_dir, '_info.json')
+        with open(views_info_file, 'w') as fp:
+            json.dump(views_info, fp, indent=2)
+
+    return folder
+
+
+def _write_dynamic_shade_files(folder, sub_folder, group, minimal=False):
+    """Write out the files that need to go into any dynamic model folder.
+
+    Args:
+        folder: The model folder location on this machine.
+        sub_folder: The sub-folder for the three files (relative to the model folder).
+        group: A DynamicShadeGroup object to be written into files.
+        minimal: Boolean noting whether radiance strings should be written minimally.
+
+    Returns:
+        A list of dictionaries to be written into the states.json file.
+    """
+    # destination folder for all of the radiance files
+    dest = os.path.join(folder, sub_folder)
+
+    # loop through all states and write out the .rad files for them
+    states_list = group.states_json_list
+    for state_i, file_names in enumerate(states_list):
+        default_str = group.to_radiance(state_i, direct=False, minimal=minimal)
+        direct_str = group.to_radiance(state_i, direct=True, minimal=minimal)
+        write_to_file_by_name(dest, file_names['default'].replace('./', ''), default_str)
+        write_to_file_by_name(dest, file_names['direct'].replace('./', ''), direct_str)
+    return states_list
+
+
+def _write_dynamic_subface_files(folder, sub_folder, group, minimal=False):
+    """Write out the files that need to go into any dynamic model folder.
+
+    Args:
+        folder: The model folder location on this machine.
+        sub_folder: The sub-folder for the three files (relative to the model folder).
+        group: A DynamicSubFaceGroup object to be written into files.
+        minimal: Boolean noting whether radiance strings should be written minimally.
+
+    Returns:
+        A list of dictionaries to be written into the states.json file.
+    """
+    # destination folder for all of the radiance files
+    dest = os.path.join(folder, sub_folder)
+
+    # loop through all states and write out the .rad files for them
+    states_list = group.states_json_list
+    for state_i, file_names in enumerate(states_list):
+        default_str = group.to_radiance(state_i, direct=False, minimal=minimal)
+        direct_str = group.to_radiance(state_i, direct=True, minimal=minimal)
+        write_to_file_by_name(dest, file_names['default'].replace('./', ''), default_str)
+        write_to_file_by_name(dest, file_names['direct'].replace('./', ''), direct_str)
+
+    # write out the black representation of the aperture
+    black_str = group.blk_to_radiance(minimal)
+    write_to_file_by_name(dest, file_names['black'].replace('./', ''), black_str)
+    return states_list
+
+
+def _write_mtx_files(folder, sub_folder, group, states_json_list, minimal=False):
+    """Write out the mtx files needed for 3-phase simulation into a model folder.
+
+    Args:
+        folder: The model folder location on this machine.
+        sub_folder: The sub-folder for the three files (relative to the model folder).
+        group: A DynamicSubFaceGroup object to be written into files.
+        states_json_list: A list to be written into the states.json file.
+        minimal: Boolean noting whether radiance strings should be written minimally.
+
+    Returns:
+        A list of dictionaries to be written into the states.json file.
+    """
+    dest = os.path.join(folder, sub_folder)  # destination folder for radiance files
+
+    # check if all of the states of all of the vmtx and dmtx geometry are default
+    one_mtx = all(st.mtxs_default for obj in group.dynamic_objects
+                  for st in obj.properties.radiance._states)
+    if one_mtx:  # if they're all default, we can use one file
+        mtx_file = './{}..mtx.rad'.format(group.identifier)
+
+    # loop through all states and write out the .rad files for them
+    tmxt_valid = False
+    for state_i, st_dict in enumerate(states_json_list):
+        tmtx_bsdf = group.tmxt_bsdf(state_i)
+        if tmtx_bsdf is not None:  # it's a valid state for 3-phase
+            tmxt_valid = True
+            # add the tmxt to the states_json_list
+            bsdf_name = os.path.split(tmtx_bsdf.bsdf_file)[-1]
+            states_json_list[state_i]['tmtx'] = bsdf_name
+
+            # add the vmtx and the dmtx to the states_json_list
+            if one_mtx:
+                states_json_list[state_i]['vmtx'] = mtx_file
+                states_json_list[state_i]['dmtx'] = mtx_file
+            else:
+                states_json_list[state_i]['vmtx'] = \
+                    './{}..vmtx..{}.rad'.format(group.identifier, str(state_i))
+                states_json_list[state_i]['dmtx'] = \
+                    './{}..dmtx..{}.rad'.format(group.identifier, str(state_i))
+                vmtx_str = group.vmtx_to_radiance(state_i, minimal)
+                dmtx_str = group.dmtx_to_radiance(state_i, minimal)
+                write_to_file_by_name(
+                    dest, states_json_list[state_i]['vmtx'].replace('./', ''), vmtx_str)
+                write_to_file_by_name(
+                    dest, states_json_list[state_i]['dmtx'].replace('./', ''), dmtx_str)
+
+    # write the single mtx file if everything is default
+    if one_mtx and tmxt_valid:
+        mtx_str = group.vmtx_to_radiance(0, minimal)
+        write_to_file_by_name(dest, mtx_file, mtx_str)
+
+
+def _write_dynamic_json(folder, sub_folder, json_dict):
+    """Write out the files that need to go into any dynamic model folder.
+
+    Args:
+        folder: The model folder location on this machine.
+        sub_folder: The sub-folder for the three files (relative to the model folder).
+        json_dict: A dictionary to be written into the states.json file.
+    """
+    if json_dict != {}:
+        dest_file = os.path.join(folder, sub_folder, 'states.json')
+        with open(dest_file, 'w') as fp:
+            json.dump(json_dict, fp, indent=4)
 
 
 def _write_static_files(
-        folder, sub_folder, model_id, geometry, geometry_blk, modifiers, modifiers_blk,
+        folder, sub_folder, file_id, geometry, geometry_blk, modifiers, modifiers_blk,
         mod_combs, mod_names, punched_verts=False, minimal=False):
     """Write out the three files that need to go into any static radiance model folder.
 
@@ -336,7 +514,7 @@ def _write_static_files(
     Args:
         folder: The model folder location on this machine.
         sub_folder: The sub-folder for the three files (relative to the model folder).
-        model_id: A Model identifier to be used for the names of each of the files.
+        file_id: An identifier to be used for the names of each of the files.
         geometry: A list of geometry objects all with default blk modifiers.
         geometry_blk: A list of geometry objects with overridden blk modifiers.
         modifiers: A list of modifiers to write.
@@ -373,25 +551,25 @@ def _write_static_files(
         mod_blk_strs = []
         for mod in modifiers:
             if isinstance(mod, BSDF):
-                _process_bsdf_modifier(folder, mod, mod_strs, minimal)
+                _process_bsdf_modifier(mod, mod_strs, minimal)
             else:
                 mod_strs.append(mod.to_radiance(minimal))
         for mod in modifiers_blk:
             if isinstance(mod, BSDF):
-                _process_bsdf_modifier(folder, mod, mod_strs, minimal)
+                _process_bsdf_modifier(mod, mod_strs, minimal)
             else:
                 mod_blk_strs.append(mod.to_radiance(minimal))
 
         # write the three files for the model sub-folder
         dest = os.path.join(folder, sub_folder)
-        write_to_file_by_name(dest, '{}.rad'.format(model_id), '\n\n'.join(face_strs))
-        write_to_file_by_name(dest, '{}.mat'.format(model_id), '\n\n'.join(mod_strs))
-        write_to_file_by_name(dest, '{}.blk'.format(model_id), '\n\n'.join(mod_blk_strs))
+        write_to_file_by_name(dest, '{}.rad'.format(file_id), '\n\n'.join(face_strs))
+        write_to_file_by_name(dest, '{}.mat'.format(file_id), '\n\n'.join(mod_strs))
+        write_to_file_by_name(dest, '{}.blk'.format(file_id), '\n\n'.join(mod_blk_strs))
 
 
 def _unique_modifiers(geometry_objects):
     """Get a list of unique modifiers across an array of geometry objects.
-    
+
     Args:
         geometry_objects: An array of geometry objects (Faces, Apertures,
             Doors, Shades) for which unique modifiers will be determined.
@@ -408,13 +586,13 @@ def _unique_modifiers(geometry_objects):
 
 
 def _unique_modifier_blk_combinations(geometry_objects):
-    """Get lists of unique modifier/mofidier_blk combinations across geometry objects.
+    """Get lists of unique modifier/modifier_blk combinations across geometry objects.
 
     Args:
         geometry_objects: An array of geometry objects (Faces, Apertures,
             Doors, Shades) for which unique combinations of modifier and
             modifier_blk will be determined.
-    
+
     Returns:
         A tuple with two objects.
 
@@ -449,39 +627,36 @@ def _unique_modifier_blk_combinations(geometry_objects):
     return modifier_combs, modifier_names
 
 
-def _collect_modifiers(geo, geo_blk, opaque_or_aperture):
+def _collect_modifiers(geo, geo_blk, aperture=False):
     """Collect all modifier and modifier_blk across geometry."""
     mods = _unique_modifiers(geo)
-    if opaque_or_aperture:
-        mods_blk = [black.duplicate() for mod in mods]
-        for i, mod in enumerate(mods):
-            mods_blk[i].identifier = mod.identifier
-    else:
-        mods_blk = mods[:]  # copy the list
+    mods_blk = []
+    for mod in mods:
+        if mod.is_opaque or aperture:  # static transparent apertures still use black
+            mod_blk = black.duplicate()
+            mod_blk.identifier = mod.identifier
+            mods_blk.append(mod_blk)
+        else:
+            mods_blk.append(mod)
     mod_combs, mod_names = _unique_modifier_blk_combinations(geo_blk)
     mods.extend([mod_comb[0] for mod_comb in mod_combs.values()])
     mods_blk.extend([mod_comb[1] for mod_comb in mod_combs.values()])
     return mods, mods_blk, mod_combs, mod_names
 
 
-def _process_bsdf_modifier(folder, modifier, mod_strs, minimal):
+def _process_bsdf_modifier(modifier, mod_strs, minimal):
     """Process a BSDF modifier for a radiance model folder."""
-    # copy the BSDF to the model radiance folder
-    model_bsdf_folder = os.path.join(folder, 'model', 'bsdf')
     bsdf_name = os.path.split(modifier.bsdf_file)[-1]
-    new_bsdf_path = os.path.join(model_bsdf_folder, bsdf_name)
-    shutil.copy(modifier.bsdf_file, new_bsdf_path)
-
-    # write a radiance string using the correct path to the BSDF
     mod_dup = modifier.duplicate()  # duplicate to avoid editing the original
-    mod_dup.bsdf_file = new_bsdf_path
+    # we must edit the hidden _bsdf_file property since the file has not yet been copied
+    mod_dup._bsdf_file = os.path.join('model', 'bsdf', bsdf_name)
     mod_strs.append(mod_dup.to_radiance(minimal))
 
 
 def _instance_in_array(object_instance, object_array):
     """Check if a specific object instance is already in an array.
 
-    This can be much faster than  `if object_instance in object_arrary`
+    This can be much faster than  `if object_instance in object_array`
     when you expect to be testing a lot of the same instance of an object for
     inclusion in an array since the builtin method uses an == operator to
     test inclusion.

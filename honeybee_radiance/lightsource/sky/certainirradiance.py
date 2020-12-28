@@ -1,13 +1,13 @@
 """Generate sky with certain irradiance."""
 from __future__ import division
-from ._skybase import Sky
+from ._skybase import _PointInTime
 from .hemisphere import Hemisphere
 from honeybee_radiance.lightsource.ground import Ground
 import honeybee.typing as typing
 import ladybug.futil as futil
 
 
-class CertainIrradiance(Sky):
+class CertainIrradiance(_PointInTime):
     """sky with certain irradiance.
 
     The output of CertainIrradiance sky is similar to using command below::
@@ -53,18 +53,12 @@ class CertainIrradiance(Sky):
         * is_point_in_time
         * is_climate_based
     """
-    __slots__ = (
-        '_irradiance', '_ground', '_ground_reflectance',
-        '_ground_hemisphere', '_sky_hemisphere'
-    )
+    __slots__ = ('_irradiance',)
 
     def __init__(self, irradiance=558.659, ground_reflectance=0.2):
         """Create sky with certain irradiance."""
-        Sky.__init__(self)
+        _PointInTime.__init__(self, ground_reflectance)
         self.irradiance = irradiance
-        self.ground_reflectance = ground_reflectance
-        self._ground_hemisphere = Ground()
-        self._sky_hemisphere = Hemisphere()
 
     @classmethod
     def from_illuminance(cls, illuminance=100000, ground_reflectance=0.2):
@@ -92,62 +86,42 @@ class CertainIrradiance(Sky):
         return round(self._irradiance * 179.0, 2)
 
     @property
-    def ground_hemisphere(self):
-        """Sky ground glow source."""
-        return self._ground_hemisphere
-
-    @property
-    def sky_hemisphere(self):
-        """Sky hemisphere glow source."""
-        return self._sky_hemisphere
-
-    @property
-    def ground_reflectance(self):
-        """Ground reflectance value."""
-        return self._ground_reflectance
-
-    @ground_reflectance.setter
-    def ground_reflectance(self, ground_reflectance):
-        self._ground_reflectance = \
-            typing.float_in_range(ground_reflectance, 0, 1, 'ground reflectance') \
-            if ground_reflectance is not None else 0.2
-
-    @property
     def is_point_in_time(self):
         """Return True if the sky is generated for a single point in time."""
         return False
 
-    @property
-    def is_climate_based(self):
-        """Return True if the sky is created based on values from weather file."""
-        return False
-
     @classmethod
-    def from_dict(cls, input_dict):
+    def from_dict(cls, data):
         """Create the sky from a dictionary.
 
         Args:
-            input_dict: A python dictionary in the following format
+            data: A python dictionary in the following format
 
         .. code-block:: python
 
-                {
+            {
+                'type': 'CertainIrradiance',
                 'irradiance': 558.659,
                 'ground_reflectance': 0.2,
                 'ground_hemisphere': {},  # see ground.Ground class [optional],
                 'sky_hemisphere': {}  # see hemisphere.Hemisphere class [optional]
-                }
+            }
         """
+        assert 'type' in data, \
+            'Input dict is missing type. Not a valid CertainIrradiance dictionary.'
+        assert data['type'] == 'CertainIrradiance', \
+            'Input type must be CertainIrradiance not %s' % data['type']
+
         sky = cls(
-            input_dict['irradiance'],
-            input_dict['ground_reflectance']
+            data['irradiance'],
+            data['ground_reflectance']
         )
 
-        if 'ground_hemisphere' in input_dict:
-            sky._ground_hemisphere = Ground.from_dict(input_dict['ground_hemisphere'])
+        if 'ground_hemisphere' in data and data['ground_hemisphere'] is not None:
+            sky._ground_hemisphere = Ground.from_dict(data['ground_hemisphere'])
 
-        if 'sky_hemisphere' in input_dict:
-            sky._sky_hemisphere = Hemisphere.from_dict(input_dict['sky_hemisphere'])
+        if 'sky_hemisphere' in data and data['sky_hemisphere'] is not None:
+            sky._sky_hemisphere = Hemisphere.from_dict(data['sky_hemisphere'])
 
         return sky
 
@@ -164,6 +138,7 @@ class CertainIrradiance(Sky):
     def to_dict(self):
         """Translate sky to a dictionary."""
         return {
+            'type': 'CertainIrradiance',
             'irradiance': self.irradiance,
             'ground_reflectance': self.ground_reflectance,
             'ground_hemisphere': self.ground_hemisphere.to_dict(),
@@ -172,6 +147,12 @@ class CertainIrradiance(Sky):
 
     def to_file(self, folder, name=None, mkdir=False):
         """Write sky hemisphere to a sky_hemisphere.rad Radiance file.
+
+        Args:
+            folder: Target folder.
+            name: File name.
+            mkdir: A boolean to note if the directory should be created if doesn't
+                exist (default: False).
 
         Returns:
             Full path to the newly created file.
