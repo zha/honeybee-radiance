@@ -32,8 +32,8 @@ def load_modifier_set_object(mset_dict, load_mods, mod_sets, misc_mods):
             modifierset = ModifierSet.from_dict(mset_dict)
             misc_mods.extend(modifierset.modified_modifiers)
         modifierset.lock()
-        assert mset_dict['identifier'] not in _default_mod_sets, 'Cannot overwrite ' \
-            'default modifier set "{}".'.format(mset_dict['identifier'])
+        # assert mset_dict['identifier'] not in _default_mod_sets, 'Cannot overwrite ' \
+        #     'default modifier set "{}".'.format(mset_dict['identifier'])
         mod_sets[mset_dict['identifier']] = modifierset
     except (TypeError, KeyError, ValueError):
         pass  # not a Honeybee ModifierSet JSON; possibly a comment
